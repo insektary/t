@@ -1,13 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {Course} from 'src/app/interfaces/course';
 
 @Component({
     selector: 'app-course',
     templateUrl: './course.component.html',
     styleUrls: ['./course.component.less']
 })
-export class CourseComponent implements OnInit {
+export class CourseComponent implements OnInit, Course {
 
-    constructor() { }
+    @Input() public id: number;
+    @Input() public title: string;
+    @Input() public creationDate: string;
+    @Input() public duration: string;
+    @Input() public descriptopn: string;
+
+    constructor() {
+        this.title = 'test title';
+    }
 
     ngOnInit() {
     }
