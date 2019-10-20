@@ -12,10 +12,10 @@ export class CourseComponent implements OnInit, Course {
     @Input() public title: string;
     @Input() public creationDate: string;
     @Input() public duration: string;
-    @Input() public descriptopn: string;
+    @Input() public description: string;
 
     constructor() {
-        this.title = 'test title';
+
     }
 
     ngOnInit() {

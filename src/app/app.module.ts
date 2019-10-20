@@ -7,6 +7,9 @@ import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
 import {SearchComponent} from './search/search.component';
 import {CourseComponent} from './course/course.component';
 import {FooterComponent} from './footer/footer.component';
+import {CourseListComponent} from './course-list/course-list.component';
+import {ButtonComponent} from './button/button.component';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +18,10 @@ import {FooterComponent} from './footer/footer.component';
         BreadcrumbsComponent,
         SearchComponent,
         CourseComponent,
-        FooterComponent
+        FooterComponent,
+        CourseListComponent,
+        ButtonComponent,
+        InputComponent
     ],
     imports: [
         BrowserModule

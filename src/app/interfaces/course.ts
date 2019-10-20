@@ -3,5 +3,5 @@ export interface Course {
     title: string;
     creationDate: string;
     duration: string;
-    descriptopn: string;
+    description: string;
 }
