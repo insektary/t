@@ -5,7 +5,7 @@ export class User implements UserInterface {
     public firstName: string;
     public lastName: string;
 
-    constructor({id, firstName, lastName}) {
+    constructor({id, firstName, lastName}: UserInterface) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

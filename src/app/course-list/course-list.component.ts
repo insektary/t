@@ -10,7 +10,7 @@ export class CourseListComponent implements OnInit {
 
     @Input() public courseList: Course[];
 
-    constructor() { 
+    constructor() {
         this.courseList = [
             {
                 id: 1,
@@ -26,7 +26,7 @@ export class CourseListComponent implements OnInit {
                 duration: '60h',
                 description: 'description2'
             }
-        ]
+        ];
     }
 
     ngOnInit() {

@@ -13,7 +13,7 @@ export class Course implements CourseInterface {
         creationDate,
         duration,
         description
-    }) {
+    }: CourseInterface) {
         this.id = id;
         this.title = title;
         this.creationDate = creationDate;
