@@ -1,1 +1,7 @@
-<p>breadcrumbs works!</p>
+<div class="breadcrumbs-container">
+    <div class="breadcrumbs-content">
+        <div *ngFor="let item of breadcrumbs" class="breadcrumbs-content--item">
+            <span>{{item.title}}</span>
+        </div>
+    </div>
+</div>
