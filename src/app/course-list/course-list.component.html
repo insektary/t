@@ -1,7 +1,12 @@
-<div>
-    <app-course
-        *ngFor="let item of courseList"
-        [item]="item"
-        >
-    </app-course>
+<div class="list-container">
+    <div class="list-content">
+        <app-button [title]="'Add course'"></app-button>
+        <div class="courses">
+            <app-course
+                *ngFor="let item of courseList"
+                [item]="item"
+                >
+            </app-course>
+        </div>
+    </div>
 </div>

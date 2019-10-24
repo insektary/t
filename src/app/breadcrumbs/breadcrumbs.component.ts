@@ -14,10 +14,6 @@ export class BreadcrumbsComponent implements OnInit {
             {
                 id: 1,
                 title: 'Courses'
-            },
-            {
-                id: 2,
-                title: 'Videoooooooooooooooooo'
             }
         ];
     }
