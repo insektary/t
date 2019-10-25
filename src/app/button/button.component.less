@@ -1,5 +1,4 @@
 .button-container {
-    height: 42px;
     padding: 0 0 0 5px;
 }
 
@@ -7,10 +6,31 @@
     height: 100%;
     color: white;
     cursor: pointer;
-    font-size: 16px;
-    background-color: #9BC837;
     border-radius: 3px;
     border: none;
     padding: 0 20px 0 20px;
     outline: 0;
+
+    &--big {
+        font-size: 16px;
+        height: 42px;
+    }
+
+    &--medium {
+        font-size: 14px;
+        height: 36px;
+    }
+
+    &--small {
+        font-size: 12px;
+        height: 24px;
+    }
+
+    &--green {
+        background-color: #9BC837;
+    }
+
+    &--blue {
+        background-color: #30B6DD;
+    }
 }

@@ -5,6 +5,7 @@
     grid-template-areas:
         "title duration ."
         "description description buttons";
+    grid-row-gap: 10px;
     background-color: white;
     font-family: Calibri;
     line-height: 26px;
@@ -16,10 +17,13 @@
 
 .course-title {
     grid-area: title;
+    font-size: 28px;
 }
 
 .course-duration {
     grid-area: duration;
+    color: rgb(190, 190, 190);
+    justify-self: end;
 }
 
 .course-description {
@@ -29,4 +33,7 @@
 
 .course-buttons {
     grid-area: buttons;
+    justify-self: end;
+    align-self: center;
+    display: flex;
 }

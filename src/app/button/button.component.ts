@@ -1,5 +1,11 @@
 import {Component, OnInit, Input} from '@angular/core';
 
+enum Sizes {
+    'BIG',
+    'MEDIUM',
+    'SMALL'
+}
+
 @Component({
     selector: 'app-button',
     templateUrl: './button.component.html',
@@ -8,6 +14,8 @@ import {Component, OnInit, Input} from '@angular/core';
 export class ButtonComponent implements OnInit {
 
     @Input() public title: string;
+    @Input() public size: string;
+    @Input() public color: string;
 
     constructor() { }
 
