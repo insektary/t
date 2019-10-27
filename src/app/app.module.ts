@@ -10,6 +10,7 @@ import {FooterComponent} from './footer/footer.component';
 import {CourseListComponent} from './course-list/course-list.component';
 import {ButtonComponent} from './button/button.component';
 import {InputComponent} from './input/input.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {InputComponent} from './input/input.component';
         InputComponent
     ],
     imports: [
-        BrowserModule
+        BrowserModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

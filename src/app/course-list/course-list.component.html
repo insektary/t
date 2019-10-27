@@ -4,6 +4,7 @@
         <div class="courses">
             <app-course
                 *ngFor="let item of courseList"
+                (onDelete)="deleteCourse($event)"
                 [item]="item"
                 >
             </app-course>

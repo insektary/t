@@ -1,5 +1,5 @@
 <div class="button-container">
-    <button class="button" [ngClass]="{
+    <button (click)="handleClick()" class="button" [ngClass]="{
         'button--green': color === 'GREEN',
         'button--blue': color === 'BLUE',
         'button--big': size === 'BIG',

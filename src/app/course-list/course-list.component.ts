@@ -65,5 +65,9 @@ export class CourseListComponent implements OnInit {
 
     ngOnInit() {
     }
+    
+    deleteCourse(id) {
+        console.log(`Course with id=${id} was deleted`);
+    }
 
 }
