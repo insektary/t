@@ -1,9 +1,14 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 enum Sizes {
     'BIG',
     'MEDIUM',
     'SMALL'
+}
+
+enum Colors {
+    'GREEN',
+    'BLUE'
 }
 
 @Component({
@@ -14,9 +19,9 @@ enum Sizes {
 export class ButtonComponent implements OnInit {
 
     @Input() public title: string;
-    @Input() public size: string;
-    @Input() public color: string;
-    @Input() public onClick: Function;
+    @Input() public size: Sizes;
+    @Input() public color: Colors;
+    @Output() private onclick: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 
@@ -24,11 +29,7 @@ export class ButtonComponent implements OnInit {
     }
 
     handleClick() {
-        const {onClick} = this;
-
-        if (onClick) {
-            onClick();
-        }
+        this.onclick.emit();
     }
 
 }

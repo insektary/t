@@ -4,12 +4,12 @@
         <div class="courses">
             <app-course
                 *ngFor="let item of courseList"
-                (onDelete)="deleteCourse($event)"
+                (ondelete)="deleteCourse($event)"
                 [item]="item"
                 >
             </app-course>
             <div class="add-more-container">
-                <a href='#'>Add more</a>
+                <a href='#'(click)="addCourse()">Add more</a>
             </div>
         </div>
     </div>
