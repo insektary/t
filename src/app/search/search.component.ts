@@ -13,7 +13,6 @@ export class SearchComponent implements OnInit {
     constructor() {
         this.buttonTitle = 'Search';
         this.foundedValue = '';
-        this.onClick = this.onClick.bind(this);
     }
 
     ngOnInit() {
