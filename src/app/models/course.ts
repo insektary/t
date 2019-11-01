@@ -5,6 +5,7 @@ export class Course implements CourseInterface {
     public title: string;
     public creationDate: string;
     public duration: string;
+    public startDate: string;
     public description: string;
 
     constructor({
@@ -18,6 +19,7 @@ export class Course implements CourseInterface {
         this.title = title;
         this.creationDate = creationDate;
         this.duration = duration;
+        this.startDate = this.startDate;
         this.description = description;
     }
 }

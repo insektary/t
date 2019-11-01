@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Oswald'; 
+    src: url('../fonts/Oswald-Regular.ttf'),
+}
+
+.header-container {
+    height: 64px;
+    background-color: #414452;
+    padding: 0 40px 0 85px;
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: 88% 6% 6%;
+    align-items: center;
+    height: 100%;
+
+    &__button {
+        background-color: #414452;
+        color: white;
+        border: none;
+    }
+}
+
+.logo-title {
+    color: white;
+    font-family: Oswald;
+}
+
+.button {
+    cursor: pointer;
+    outline: 0;
+
+    &--small {
+        font-family: Arial;
+    }
+}
+
+.button-container {
+    justify-self: end;
+}

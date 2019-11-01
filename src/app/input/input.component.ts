@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'app-input',
@@ -8,12 +8,19 @@ import {Component, OnInit, Input} from '@angular/core';
 export class InputComponent implements OnInit {
 
     @Input() public placeholder: string;
+    @Output() private onchange: EventEmitter<string> = new EventEmitter();
+    private value: string;
 
     constructor() {
-        this.placeholder = 'Text to search'
+        this.value = '';
     }
 
     ngOnInit() {
+    }
+
+    valueChange(value) {
+        this.value = value;
+        this.onchange.emit(this.value);
     }
 
 }

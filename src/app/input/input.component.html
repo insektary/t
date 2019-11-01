@@ -1,1 +1,4 @@
-<input [placeholder]="placeholder" />
+<div class="input-container">
+    <span class="lens">&#9906;</span>
+    <input class="input-field" [placeholder]="placeholder" [ngModel]="value" (ngModelChange)="valueChange($event)"/>
+</div>

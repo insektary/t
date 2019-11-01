@@ -1,7 +1,16 @@
-<div>
-    <app-course
-        *ngFor="let item of courseList"
-        [item]="item"
-        >
-    </app-course>
+<div class="list-container">
+    <div class="list-content">
+        <app-button [title]="'+ Add course'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+        <div class="courses">
+            <app-course
+                *ngFor="let item of courseList"
+                (ondelete)="deleteCourse($event)"
+                [item]="item"
+                >
+            </app-course>
+            <div class="add-more-container">
+                <a href='#'(click)="addCourse()">Add more</a>
+            </div>
+        </div>
+    </div>
 </div>

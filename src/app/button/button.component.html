@@ -1,1 +1,9 @@
-<button>{{title}}</button>
+<div class="button-container">
+    <button (click)="handleClick()" class="button" [ngClass]="{
+        'button--green': color === 'GREEN',
+        'button--blue': color === 'BLUE',
+        'button--big': size === 'BIG',
+        'button--medium': size === 'MEDIUM',
+        'button--small': size === 'SMALL'
+    }" >{{title}}</button>
+</div>
