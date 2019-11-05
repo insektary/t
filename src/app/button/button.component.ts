@@ -19,8 +19,8 @@ enum Colors {
 export class ButtonComponent implements OnInit {
 
     @Input() public title: string;
-    @Input() public size: Sizes;
-    @Input() public color: Colors;
+    @Input() public size: Sizes = Sizes.MEDIUM;
+    @Input() public color: Colors = Colors.GREEN;
     @Output() private onclick: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
