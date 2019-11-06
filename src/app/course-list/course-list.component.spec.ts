@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CourseListComponent} from './course-list.component';
 import {CourseComponent} from '../course/course.component';
+import {Course} from '../models/course';
 
 describe('CourseListComponent', () => {
     let component: CourseListComponent;

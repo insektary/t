@@ -22,4 +22,19 @@ describe('ButtonComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('test click', () => {
+        spyOn(component, 'handleClick');
+        let button = fixture.debugElement.nativeElement.querySelector('button');
+        button.click();
+
+        expect(component.handleClick).toHaveBeenCalled();
+    });
+
+    it('test eventEmitter', () => {
+        spyOn(component.onclick, 'emit');
+        component.handleClick();
+
+        expect(component.onclick.emit).toHaveBeenCalled();
+    });
 });
