@@ -2,16 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {ButtonComponent} from './button.component';
 
-enum Sizes {
-    'BIG',
-    'MEDIUM',
-    'SMALL'
-}
+type Sizes = 'BIG' | 'MEDIUM' | 'SMALL';
 
-enum Colors {
-    'GREEN',
-    'BLUE'
-}
+type Colors = 'GREEN' | 'BLUE';
 
 describe('ButtonComponent', () => {
     let component: ButtonComponent;
@@ -28,8 +21,8 @@ describe('ButtonComponent', () => {
         fixture = TestBed.createComponent(ButtonComponent);
         component = fixture.componentInstance;
         component.title = 'test';
-        component.size = Sizes.MEDIUM;
-        component.color = Colors.BLUE;
+        component.size = 'MEDIUM';
+        component.color = 'BLUE';
         fixture.detectChanges();
     });
 
@@ -50,5 +43,14 @@ describe('ButtonComponent', () => {
         component.handleClick();
 
         expect(component.onclick.emit).toHaveBeenCalled();
+    });
+
+    it('test css', () => {
+        spyOn(component, 'handleClick');
+        const button = fixture.debugElement.nativeElement.querySelector('button');
+        fixture.detectChanges();
+
+        expect(button.className).toContain('button--medium');
+        expect(button.className).toContain('button--blue');
     });
 });
