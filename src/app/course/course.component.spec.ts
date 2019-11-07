@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from "@angular/platform-browser";
+import {By} from '@angular/platform-browser';
 import {ButtonComponent} from '../button/button.component';
 import {CourseComponent} from './course.component';
 
@@ -34,16 +34,16 @@ describe('CourseComponent', () => {
     });
 
     it('check title', () => {
-		const title = fixture.debugElement.query(By.css('.course-title'));
+        const title = fixture.debugElement.query(By.css('.course-title'));
 		expect(title.nativeElement.innerText).toBe(itemParams.title);
     });
-    
+
     it('check duration and startDate', () => {
 		const duration = fixture.debugElement.query(By.css('.course-duration'));
         expect(duration.nativeElement.innerText).toContain(itemParams.duration);
         expect(duration.nativeElement.innerText).toContain(itemParams.startDate);
     });
-    
+
     it('check description', () => {
 		const description = fixture.debugElement.query(By.css('.course-description'));
 		expect(description.nativeElement.innerText).toBe(itemParams.description);

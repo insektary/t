@@ -1,6 +1,17 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import {By} from '@angular/platform-browser';
 import {ButtonComponent} from './button.component';
+
+enum Sizes {
+    'BIG',
+    'MEDIUM',
+    'SMALL'
+}
+
+enum Colors {
+    'GREEN',
+    'BLUE'
+}
 
 describe('ButtonComponent', () => {
     let component: ButtonComponent;
@@ -16,6 +27,9 @@ describe('ButtonComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ButtonComponent);
         component = fixture.componentInstance;
+        component.title = 'test';
+        component.size = Sizes.MEDIUM;
+        component.color = Colors.BLUE;
         fixture.detectChanges();
     });
 
@@ -25,7 +39,7 @@ describe('ButtonComponent', () => {
 
     it('test click', () => {
         spyOn(component, 'handleClick');
-        let button = fixture.debugElement.nativeElement.querySelector('button');
+        const button = fixture.debugElement.nativeElement.querySelector('button');
         button.click();
 
         expect(component.handleClick).toHaveBeenCalled();
