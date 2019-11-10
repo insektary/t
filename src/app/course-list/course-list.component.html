@@ -1,6 +1,7 @@
 <div class="list-container">
     <div class="list-content">
         <app-button [title]="'+ Add course'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+        <div class="empty-paceholder" *ngIf='!courseList || courseList.length === 0'>No data. Fell free to add new course</div>
         <div class="courses">
             <app-course
                 *ngFor="let item of courseList"

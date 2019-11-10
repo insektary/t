@@ -10,6 +10,7 @@ import {CourseListComponent} from './course-list/course-list.component';
 import {ButtonComponent} from './button/button.component';
 import {InputComponent} from './input/input.component';
 import {FormsModule} from '@angular/forms';
+import { BorderGreenDirective } from './border-green.directive';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {FormsModule} from '@angular/forms';
         FooterComponent,
         CourseListComponent,
         ButtonComponent,
-        InputComponent
+        InputComponent,
+        BorderGreenDirective
     ],
     imports: [
         BrowserModule,
