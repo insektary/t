@@ -4,7 +4,7 @@
         <div class="empty-paceholder" *ngIf='!courseList || courseList.length === 0'>No data. Fell free to add new course</div>
         <div class="courses">
             <app-course
-                *ngFor="let item of courseList"
+                *ngFor="let item of courseList | filter:(filter$) | orderBy"
                 (ondelete)="deleteCourse($event)"
                 [item]="item"
                 >

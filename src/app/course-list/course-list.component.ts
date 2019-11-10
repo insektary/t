@@ -8,71 +8,73 @@ import {Course} from 'src/app/interfaces/course';
 })
 export class CourseListComponent implements OnInit {
 
+
+    @Input() public filter$: string;
     @Input() public courseList: Course[];
 
     constructor() {
         this.courseList = [
             {
                 id: 1,
-                title: 'Video course 1. Name tag',
+                title: 'Angular',
                 isFavorite: false,
-                creationDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                creationDate: 'Fri Nov 1 2019 12:32:41 GMT+0300',
+                duration: 45,
+                startDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             },
             {
                 id: 1,
-                title: 'Video course 1. Name tag',
+                title: 'React',
                 isFavorite: true,
-                creationDate: 'Sun Nov 10 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                creationDate: 'Fri Nov 29 2019 12:32:41 GMT+0300',
+                duration: 45,
+                startDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             },
             {
                 id: 2,
-                title: 'Video course 1. Name tag',
+                title: 'NodeJS',
                 isFavorite: false,
-                creationDate: 'Mon Nov 4 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                creationDate: 'Mon Nov 18 2019 12:32:41 GMT+0300',
+                duration: 120,
+                startDate: 'Mon Nov 18 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             },
             {
                 id: 3,
-                title: 'Video course 1. Name tag',
+                title: 'Vue',
                 isFavorite: false,
-                creationDate: 'Mon Oct 21 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                creationDate: 'Mon Oct 7 2019 12:32:41 GMT+0300',
+                duration: 60,
+                startDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             },
             {
                 id: 4,
-                title: 'Video course 1. Name tag',
+                title: 'Python',
                 isFavorite: false,
                 creationDate: 'Mon Oct 21 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                duration: 150,
+                startDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             },
             {
                 id: 5,
-                title: 'Video course 1. Name tag',
+                title: 'Java',
                 isFavorite: false,
                 creationDate: 'Mon Oct 21 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                duration: 250,
+                startDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             },
             {
                 id: 6,
-                title: 'Video course 1. Name tag',
+                title: '.NET',
                 isFavorite: false,
                 creationDate: 'Mon Oct 21 2019 12:32:41 GMT+0300',
-                duration: '60h 28m',
-                startDate: '9 Nov, 2019',
+                duration: 130,
+                startDate: 'Mon Nov 25 2019 12:32:41 GMT+0300',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             }
         ];

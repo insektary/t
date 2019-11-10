@@ -3,7 +3,7 @@ export interface Course {
     title: string;
     isFavorite: boolean;
     creationDate: string;
-    duration: string;
+    duration: number;
     startDate: string;
     description: string;
 }

@@ -4,7 +4,7 @@ import * as moment from 'moment';
 const TWO_WEEKS_DURATION = 1209600000;
 
 @Directive({
-  selector: '[appBorderGreen]'
+    selector: '[appBorderGreen]'
 })
 export class BorderGreenDirective implements OnChanges {
 

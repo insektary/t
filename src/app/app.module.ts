@@ -11,6 +11,9 @@ import {ButtonComponent} from './button/button.component';
 import {InputComponent} from './input/input.component';
 import {FormsModule} from '@angular/forms';
 import { BorderGreenDirective } from './border-green.directive';
+import { DurationFormatterPipe } from './duration-formatter.pipe';
+import { FilterPipe } from './filter.pipe';
+import { OrderByPipe } from './order-by.pipe';
 
 @NgModule({
     declarations: [
@@ -23,7 +26,10 @@ import { BorderGreenDirective } from './border-green.directive';
         CourseListComponent,
         ButtonComponent,
         InputComponent,
-        BorderGreenDirective
+        BorderGreenDirective,
+        DurationFormatterPipe,
+        FilterPipe,
+        OrderByPipe
     ],
     imports: [
         BrowserModule,
