@@ -5,7 +5,7 @@ export class Course implements CourseInterface {
     public title: string;
     public isFavorite: boolean;
     public creationDate: string;
-    public duration: string;
+    public duration: number;
     public startDate: string;
     public description: string;
 

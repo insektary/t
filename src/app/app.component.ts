@@ -6,5 +6,10 @@ import {Component} from '@angular/core';
     styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'angular-mentoring';
+	title = 'angular-mentoring';
+	currentSearch = '';
+	
+	setSearchedValue(value: string) {
+		this.currentSearch = value;
+	}
 }
