@@ -3,7 +3,7 @@
     <div class="course-duration">&#9716; {{item.duration}} &#128197; {{item.startDate}}</div>
     <div class="course-description">{{item.description}}</div>
     <div class="course-buttons">
-        <app-button [title]="'Edit'" [size]="'SMALL'" [color]="'BLUE'"></app-button>
+        <app-button (onclick)="handleEdit()" [title]="'Edit'" [size]="'SMALL'" [color]="'BLUE'"></app-button>
         <app-button (onclick)="handleDelete()" [title]="'Delete'" [size]="'SMALL'" [color]="'BLUE'"></app-button>
     </div>
 </div>

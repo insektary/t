@@ -2,10 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {ButtonComponent} from './button.component';
 
-type Sizes = 'BIG' | 'MEDIUM' | 'SMALL';
-
-type Colors = 'GREEN' | 'BLUE';
-
 describe('ButtonComponent', () => {
     let component: ButtonComponent;
     let fixture: ComponentFixture<ButtonComponent>;

@@ -47,5 +47,21 @@ describe('CourseComponent', () => {
     it('check description', () => {
 		const description = fixture.debugElement.query(By.css('.course-description'));
 		expect(description.nativeElement.innerText).toBe(itemParams.description);
+    });
+
+    it('check edit click', () => {
+        spyOn(component.onedit, 'emit');
+        const button = fixture.debugElement.nativeElement.querySelectorAll('button');
+
+        button[0].click();
+        expect(component.onedit.emit).toHaveBeenCalled();
+	});
+    
+    it('check delete click', () => {
+        spyOn(component.ondelete, 'emit');
+        const button = fixture.debugElement.nativeElement.querySelectorAll('button');
+
+        button[1].click();
+        expect(component.ondelete.emit).toHaveBeenCalled();
 	});
 });
