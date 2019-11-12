@@ -15,6 +15,8 @@ describe('CourseComponent', () => {
         description: 'Lorem ipsum dolor sit amet'
     };
 
+    const course = new CourseComponent();
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
         declarations: [CourseComponent, ButtonComponent]
@@ -35,18 +37,18 @@ describe('CourseComponent', () => {
 
     it('check title', () => {
         const title = fixture.debugElement.query(By.css('.course-title'));
-		expect(title.nativeElement.innerText).toBe(itemParams.title);
+        expect(title.nativeElement.innerText).toBe(itemParams.title);
     });
 
     it('check duration and startDate', () => {
-		const duration = fixture.debugElement.query(By.css('.course-duration'));
+        const duration = fixture.debugElement.query(By.css('.course-duration'));
         expect(duration.nativeElement.innerText).toContain(itemParams.duration);
         expect(duration.nativeElement.innerText).toContain(itemParams.startDate);
     });
 
     it('check description', () => {
-		const description = fixture.debugElement.query(By.css('.course-description'));
-		expect(description.nativeElement.innerText).toBe(itemParams.description);
+        const description = fixture.debugElement.query(By.css('.course-description'));
+        expect(description.nativeElement.innerText).toBe(itemParams.description);
     });
 
     it('check edit click', () => {
@@ -55,13 +57,29 @@ describe('CourseComponent', () => {
 
         button[0].click();
         expect(component.onedit.emit).toHaveBeenCalled();
-	});
-    
+    });
+
     it('check delete click', () => {
         spyOn(component.ondelete, 'emit');
         const button = fixture.debugElement.nativeElement.querySelectorAll('button');
 
         button[1].click();
         expect(component.ondelete.emit).toHaveBeenCalled();
-	});
+    });
+
+    it('courseComponent handleEdit class test', () => {
+        course.item = itemParams;
+
+        course.onedit.subscribe((id) => expect(id).toBe(itemParams.id));
+
+        course.handleEdit();
+    });
+
+    it('courseComponent handleDelete class test', () => {
+        course.item = itemParams;
+
+        course.ondelete.subscribe((id) => expect(id).toBe(itemParams.id));
+
+        course.handleDelete();
+    });
 });
