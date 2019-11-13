@@ -19,9 +19,9 @@ export class BorderGreenDirective implements OnChanges {
         const interval = moment(currentDate).diff(startDate);
 
         if (currentDate.isAfter(startDate) && interval < TWO_WEEKS_DURATION) {
-            this.elementRef.nativeElement.style.border = "solid 1px greenyellow";
+            this.elementRef.nativeElement.style.border = 'solid 1px greenyellow';
         } else if (currentDate.isBefore(startDate)) {
-            this.elementRef.nativeElement.style.border = "solid 1px skyblue";
+            this.elementRef.nativeElement.style.border = 'solid 1px skyblue';
         }
     }
 }
