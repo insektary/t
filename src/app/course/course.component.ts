@@ -9,7 +9,8 @@ import {Course} from 'src/app/models/course';
 export class CourseComponent implements OnInit {
 
     @Input() public item: Course;
-    @Output() private ondelete: EventEmitter<number> = new EventEmitter();
+    @Output() public ondelete: EventEmitter<number> = new EventEmitter();
+    @Output() public onedit: EventEmitter<number> = new EventEmitter();
 
     constructor() {
     }
@@ -21,6 +22,12 @@ export class CourseComponent implements OnInit {
         const {item: {id}} = this;
 
         this.ondelete.emit(id);
+    }
+
+    handleEdit() {
+        const {item: {id}} = this;
+
+        this.onedit.emit(id);
     }
 
 }
