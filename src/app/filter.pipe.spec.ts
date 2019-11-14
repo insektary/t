@@ -1,8 +1,18 @@
 import {FilterPipe} from './filter.pipe';
 
 describe('FilterPipe', () => {
+	let pipe;
+
+	beforeEach(() => {
+		pipe = new FilterPipe();
+	})
+
 	it('create an instance', () => {
-		const pipe = new FilterPipe();
 		expect(pipe).toBeTruthy();
 	});
+
+	it('tests filter', () => {
+		expect(pipe.transform([{title: 'test'}, {title: 'another'}], 'te')).toEqual([{title: 'test'}]);
+	});
 });
+
