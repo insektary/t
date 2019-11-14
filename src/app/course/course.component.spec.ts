@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 import {ButtonComponent} from '../button/button.component';
 import {CourseComponent} from './course.component';
 import {BorderGreenDirective} from '../border-green.directive';
@@ -41,51 +42,53 @@ describe('CourseComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    // it('check title', () => {
-    //     const title = fixture.debugElement.query(By.css('.course-title'));
-    //     expect(title.nativeElement.innerText).toBe(itemParams.title);
-    // });
+    it('check title', () => {
+        const title = fixture.debugElement.query(By.css('.course-title'));
 
-    // it('check duration and startDate', () => {
-    //     const duration = fixture.debugElement.query(By.css('.course-duration'));
-    //     expect(duration.nativeElement.innerText).toContain(itemParams.duration);
-    //     expect(duration.nativeElement.innerText).toContain(itemParams.startDate);
-    // });
+        expect(title.nativeElement.innerText).toBe(itemParams.title.toUpperCase());
+    });
 
-    // it('check description', () => {
-    //     const description = fixture.debugElement.query(By.css('.course-description'));
-    //     expect(description.nativeElement.innerText).toBe(itemParams.description);
-    // });
+    it('check duration and startDate', () => {
+        const duration = fixture.debugElement.query(By.css('.course-duration'));
 
-    // it('check edit click', () => {
-    //     spyOn(component.onedit, 'emit');
-    //     const button = fixture.debugElement.nativeElement.querySelectorAll('button');
+        expect(duration.nativeElement.innerText).toContain('2 h 10 m');
+        expect(duration.nativeElement.innerText).toContain('2 h 10 m');
+    });
 
-    //     button[0].click();
-    //     expect(component.onedit.emit).toHaveBeenCalled();
-    // });
+    it('check description', () => {
+        const description = fixture.debugElement.query(By.css('.course-description'));
+        expect(description.nativeElement.innerText).toBe(itemParams.description);
+    });
 
-    // it('check delete click', () => {
-    //     spyOn(component.ondelete, 'emit');
-    //     const button = fixture.debugElement.nativeElement.querySelectorAll('button');
+    it('check edit click', () => {
+        spyOn(component.onedit, 'emit');
+        const button = fixture.debugElement.nativeElement.querySelectorAll('button');
 
-    //     button[1].click();
-    //     expect(component.ondelete.emit).toHaveBeenCalled();
-    // });
+        button[0].click();
+        expect(component.onedit.emit).toHaveBeenCalled();
+    });
 
-    // it('courseComponent handleEdit class test', () => {
-    //     course.item = itemParams;
+    it('check delete click', () => {
+        spyOn(component.ondelete, 'emit');
+        const button = fixture.debugElement.nativeElement.querySelectorAll('button');
 
-    //     course.onedit.subscribe((id) => expect(id).toBe(itemParams.id));
+        button[1].click();
+        expect(component.ondelete.emit).toHaveBeenCalled();
+    });
 
-    //     course.handleEdit();
-    // });
+    it('courseComponent handleEdit class test', () => {
+        course.item = itemParams;
 
-    // it('courseComponent handleDelete class test', () => {
-    //     course.item = itemParams;
+        course.onedit.subscribe((id) => expect(id).toBe(itemParams.id));
 
-    //     course.ondelete.subscribe((id) => expect(id).toBe(itemParams.id));
+        course.handleEdit();
+    });
 
-    //     course.handleDelete();
-    // });
+    it('courseComponent handleDelete class test', () => {
+        course.item = itemParams;
+
+        course.ondelete.subscribe((id) => expect(id).toBe(itemParams.id));
+
+        course.handleDelete();
+    });
 });

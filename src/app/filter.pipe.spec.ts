@@ -15,4 +15,3 @@ describe('FilterPipe', () => {
 		expect(pipe.transform([{title: 'test'}, {title: 'another'}], 'te')).toEqual([{title: 'test'}]);
 	});
 });
-

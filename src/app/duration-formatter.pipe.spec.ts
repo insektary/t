@@ -17,4 +17,3 @@ describe('DurationFormatterPipe', () => {
 		expect(pipe.transform(50)).toEqual('50 m');
 	});
 });
-
