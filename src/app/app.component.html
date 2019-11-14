@@ -1,7 +1,7 @@
 <div class="app-container">
     <app-header></app-header>
     <app-breadcrumbs></app-breadcrumbs>
-    <app-search></app-search>
-    <app-course-list></app-course-list>
+    <app-search (startSearch)="setSearchedValue($event)"></app-search>
+    <app-course-list [filter$]="currentSearch"></app-course-list>
     <app-footer></app-footer>
 </div>

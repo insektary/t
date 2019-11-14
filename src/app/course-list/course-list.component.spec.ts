@@ -2,7 +2,10 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CourseListComponent} from './course-list.component';
 import {CourseComponent} from '../course/course.component';
-import {Course} from '../models/course';
+import {BorderGreenDirective} from '../border-green.directive';
+import {DurationFormatterPipe} from '../duration-formatter.pipe';
+import {OrderByPipe} from '../order-by.pipe';
+import {FilterPipe} from '../filter.pipe';
 
 describe('CourseListComponent', () => {
     let component: CourseListComponent;
@@ -10,10 +13,16 @@ describe('CourseListComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-        declarations: [CourseListComponent, CourseComponent],
+        declarations: [
+            CourseListComponent,
+            CourseComponent,
+            OrderByPipe,
+            FilterPipe,
+            BorderGreenDirective,
+            DurationFormatterPipe
+        ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA]
-        })
-        .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {

@@ -2,6 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {ButtonComponent} from '../button/button.component';
 import {CourseComponent} from './course.component';
+import {BorderGreenDirective} from '../border-green.directive';
+import {DurationFormatterPipe} from '../duration-formatter.pipe';
 
 describe('CourseComponent', () => {
     let component: CourseComponent;
@@ -9,8 +11,9 @@ describe('CourseComponent', () => {
     const itemParams = {
         id: 1,
         title: 'Video course 1. Name tag',
+        isFavorite: false,
         creationDate: '12.12.2001',
-        duration: '60h 28m',
+        duration: 130,
         startDate: '9 Nov, 2019',
         description: 'Lorem ipsum dolor sit amet'
     };
@@ -19,9 +22,13 @@ describe('CourseComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-        declarations: [CourseComponent, ButtonComponent]
-        })
-        .compileComponents();
+        declarations: [
+            CourseComponent,
+            ButtonComponent,
+            BorderGreenDirective,
+            DurationFormatterPipe
+        ]
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -37,13 +44,15 @@ describe('CourseComponent', () => {
 
     it('check title', () => {
         const title = fixture.debugElement.query(By.css('.course-title'));
-        expect(title.nativeElement.innerText).toBe(itemParams.title);
+
+        expect(title.nativeElement.innerText).toBe(itemParams.title.toUpperCase());
     });
 
     it('check duration and startDate', () => {
         const duration = fixture.debugElement.query(By.css('.course-duration'));
-        expect(duration.nativeElement.innerText).toContain(itemParams.duration);
-        expect(duration.nativeElement.innerText).toContain(itemParams.startDate);
+
+        expect(duration.nativeElement.innerText).toContain('2 h 10 m');
+        expect(duration.nativeElement.innerText).toContain('2 h 10 m');
     });
 
     it('check description', () => {

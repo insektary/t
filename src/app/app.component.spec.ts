@@ -11,6 +11,10 @@ import {FooterComponent} from './footer/footer.component';
 import {CourseListComponent} from './course-list/course-list.component';
 import {ButtonComponent} from './button/button.component';
 import {InputComponent} from './input/input.component';
+import {BorderGreenDirective} from './border-green.directive';
+import {DurationFormatterPipe} from './duration-formatter.pipe';
+import {OrderByPipe} from './order-by.pipe';
+import {FilterPipe} from './filter.pipe';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -26,7 +30,11 @@ describe('AppComponent', () => {
             FooterComponent,
             CourseListComponent,
             ButtonComponent,
-            InputComponent
+            InputComponent,
+            BorderGreenDirective,
+            DurationFormatterPipe,
+            OrderByPipe,
+            FilterPipe
         ],
         }).compileComponents();
     }));

@@ -23,20 +23,4 @@ describe('InputComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
-    it('test change', () => {
-        spyOn(component, 'valueChange');
-        const input = fixture.debugElement.nativeElement.querySelector('input');
-        input.value = 'test';
-        input.dispatchEvent(new Event('input'));
-
-        expect(component.valueChange).toHaveBeenCalledWith('test');
-    });
-
-    it('test eventEmitter', () => {
-        spyOn(component.onchange, 'emit');
-        component.valueChange('test');
-
-        expect(component.onchange.emit).toHaveBeenCalledWith('test');
-    });
 });

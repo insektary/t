@@ -1,8 +1,15 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
-type Sizes = 'BIG' | 'MEDIUM' | 'SMALL';
+enum Sizes {
+    'BIG',
+    'MEDIUM',
+    'SMALL'
+}
 
-type Colors = 'GREEN' | 'BLUE';
+enum Colors {
+    'GREEN',
+    'BLUE'
+}
 
 @Component({
     selector: 'app-button',
@@ -12,9 +19,9 @@ type Colors = 'GREEN' | 'BLUE';
 export class ButtonComponent implements OnInit {
 
     @Input() public title: string;
-    @Input() public size: Sizes = 'MEDIUM';
-    @Input() public color: Colors = 'GREEN';
-    @Output() public onclick: EventEmitter<void> = new EventEmitter();
+    @Input() public size: Sizes;
+    @Input() public color: Colors;
+    @Output() private onclick: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 
