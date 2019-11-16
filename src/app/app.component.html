@@ -1,7 +1,10 @@
 <div class="app-container">
     <app-header></app-header>
-    <app-breadcrumbs></app-breadcrumbs>
-    <app-search (startSearch)="setSearchedValue($event)"></app-search>
-    <app-course-list [filter$]="currentSearch"></app-course-list>
+    <app-auth-page *ngIf="!isAuth"></app-auth-page>
+    <div *ngIf="isAuth">
+        <app-breadcrumbs></app-breadcrumbs>
+        <app-search (startSearch)="setSearchedValue($event)"></app-search>
+        <app-course-list [filter$]="currentSearch"></app-course-list>
+    </div>
     <app-footer></app-footer>
 </div>
