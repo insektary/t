@@ -2,6 +2,21 @@ import {Injectable} from '@angular/core';
 import {Course} from 'src/app/interfaces/course';
 import * as moment from 'moment';
 
+type CreateCourseType = {
+    title: string,
+    startDate: string,
+    description: string,
+    duration: number
+}
+
+type UpdateCourseType = {
+    id: number,
+    title: string,
+    startDate: string,
+    description: string,
+    duration: number
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -78,9 +93,11 @@ export class CoursesService {
     }
 
     generateId(): number {
-        const {random, round} = Math;
+        if (!this.courseList || this.courseList.length === 0) {
+            return 1;
+        }
 
-        return round(random() * 100000);
+        return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
     
     getData(): Course[] {
@@ -92,7 +109,7 @@ export class CoursesService {
         startDate,
         description,
         duration
-    }: Omit<Course, 'id' | 'isFavorite' | 'creationDate'>): void {
+    }: CreateCourseType): void {
         this.courseList.push({
             id: this.generateId(),
             title,
@@ -114,9 +131,9 @@ export class CoursesService {
         startDate,
         description,
         duration
-    }: Omit<Course, 'isFavorite' | 'creationDate'>): void {
+    }: UpdateCourseType): void {
         this.courseList = this.courseList.map((course) => {
-            if (course.id = id) {
+            if (course.id === id) {
                 return {
                     ...course,
                     title,
