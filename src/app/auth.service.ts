@@ -8,20 +8,23 @@ export class AuthService {
     constructor() { }
 
     logIn(userName: string, token: string): void {
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('token', token);
+        localStorage.setItem('userData', JSON.stringify({
+            userName,
+            token
+        }));
     }
 
     logOut(): void {
-        localStorage.removeItem('userName');
-        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
     }
 
     isAuthenticated(): boolean {
-        return Boolean(localStorage.getItem('userName') && localStorage.getItem('token'));
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+
+        return Boolean(userData.userName && userData.token);
     }
 
     getUserInfo(): string {
-        return localStorage.getItem('userName');
+        return localStorage.getItem('userData');
     }
 }
