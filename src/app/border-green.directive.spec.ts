@@ -1,11 +1,30 @@
 import {NO_ERRORS_SCHEMA, ElementRef, Input} from '@angular/core';
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {Component} from '@angular/core';
+import * as moment from 'moment';
 import {By} from '@angular/platform-browser';
 import {BorderGreenDirective} from './border-green.directive';
 
 const DATE = '2019-11-18T12:37:21+0000';
 const DATE2 = '2019-11-1T12:37:21+0000';
+
+const getPastDateFrom2WeeksInterval = () => {
+    const currentDate = moment();
+    const year = parseInt(currentDate.format('YYYY'));
+    const mounth = parseInt(currentDate.format('MM'));
+    const day = parseInt(currentDate.format('DD'));
+
+    return `${year}-${mounth}-${day - 1}T12:37:21+0000`;
+}
+
+const getFutureDate = () => {
+    const currentDate = moment();
+    const year = parseInt(currentDate.format('YYYY'));
+    const mounth = parseInt(currentDate.format('MM'));
+    const day = parseInt(currentDate.format('DD'));
+
+    return `${year}-${mounth}-${day + 1}T12:37:21+0000`;
+}
 
 @Component({
     template: `<div appBorderGreen [startDate]='startDate'>Test</div>`
@@ -28,23 +47,23 @@ describe('BorderGreenDirective', () => {
 
     });
 
-    //next tests are binded to present actual date. TODO: make tests independent of time
+    // Not perfect tests. May be errors in first and last dates of mounth
 
-    // it('should have skyblue border', () => {
-    //     component.startDate = DATE;
-    //     fixture.detectChanges();
-    //     const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
+    it('should have skyblue border', () => {
+        component.startDate = getFutureDate();
+        fixture.detectChanges();
+        const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
 
-    //     expect(el[0].nativeElement.style.border).toBe('1px solid skyblue');
-    // });
+        expect(el[0].nativeElement.style.border).toBe('1px solid skyblue');
+    });
 
-    // it('should have greenyellow border', () => {
-    //     component.startDate = DATE2;
-    //     fixture.detectChanges();
-    //     const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
+    it('should have greenyellow border', () => {
+        component.startDate = getPastDateFrom2WeeksInterval();
+        fixture.detectChanges();
+        const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
 
-    //     expect(el[0].nativeElement.style.border).toBe('1px solid greenyellow');
-    // });
+        expect(el[0].nativeElement.style.border).toBe('1px solid greenyellow');
+    });
 });
 
 
