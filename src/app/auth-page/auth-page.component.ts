@@ -15,11 +15,11 @@ export class AuthPageComponent implements OnInit {
     ngOnInit() {
     }
 
-    emailChange(value) {
+    emailChange(value: string) {
         this.email = value;
     }
 
-    passwordChange(value) {
+    passwordChange(value: string) {
         this.password = value;
     }
 

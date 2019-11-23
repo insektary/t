@@ -1,21 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Course} from 'src/app/interfaces/course';
+import {Course, CreateCourseType, UpdateCourseType} from 'src/app/interfaces/course';
 import * as moment from 'moment';
-
-type CreateCourseType = {
-    title: string,
-    startDate: string,
-    description: string,
-    duration: number
-}
-
-type UpdateCourseType = {
-    id: number,
-    title: string,
-    startDate: string,
-    description: string,
-    duration: number
-}
 
 @Injectable({
     providedIn: 'root'
