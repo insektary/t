@@ -1,16 +1,18 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../auth.service';
 
 @Component({
     selector: 'app-auth-page',
     templateUrl: './auth-page.component.html',
-    styleUrls: ['./auth-page.component.less']
+    styleUrls: ['./auth-page.component.less'],
+    providers: [AuthService]
 })
 export class AuthPageComponent implements OnInit {
 
     public email: string;
     public password: string;
 
-    constructor() { }
+    constructor(private authService: AuthService) { }
 
     ngOnInit() {
     }
@@ -24,7 +26,7 @@ export class AuthPageComponent implements OnInit {
     }
 
     logIn() {
-        console.log(`log in with email ${this.email} password ${this.password}`);
+        this.authService.logIn(this.email, this.password);
     }
 
 }
