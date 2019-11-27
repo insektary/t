@@ -11,10 +11,11 @@ import {CourseListComponent} from './course-list/course-list.component';
 import {ButtonComponent} from './button/button.component';
 import {InputComponent} from './input/input.component';
 import {FormsModule} from '@angular/forms';
-import { BorderGreenDirective } from './border-green.directive';
-import { DurationFormatterPipe } from './duration-formatter.pipe';
-import { FilterPipe } from './filter.pipe';
-import { OrderByPipe } from './order-by.pipe';
+import {BorderGreenDirective} from './border-green.directive';
+import {DurationFormatterPipe} from './duration-formatter.pipe';
+import {FilterPipe} from './filter.pipe';
+import {OrderByPipe} from './order-by.pipe';
+import { AuthPageComponent } from './auth-page/auth-page.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { OrderByPipe } from './order-by.pipe';
         BorderGreenDirective,
         DurationFormatterPipe,
         FilterPipe,
-        OrderByPipe
+        OrderByPipe,
+        AuthPageComponent
     ],
     imports: [
         BrowserModule,

@@ -8,6 +8,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 export class InputComponent implements OnInit {
 
     @Input() public placeholder: string;
+    @Input() public withLens: boolean;
     @Output() private onchange: EventEmitter<string> = new EventEmitter();
     private value: string;
 

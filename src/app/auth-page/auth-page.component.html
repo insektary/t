@@ -1,0 +1,14 @@
+<div class="auth-container">
+    <div class="auth-content">
+        <form (ngSubmit)="logIn()">
+            <h2>Login</h2>
+            <p>E-mail</p>
+            <app-input [placeholder]="'E-mail'" (onchange)="emailChange($event)"></app-input>
+            <p>Password</p>
+            <app-input [placeholder]="'Password'" (onchange)="passwordChange($event)"></app-input>
+            <p>
+                <app-button type="submit" [title]="'Login'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+            </p>
+        </form>
+    </div>
+</div>

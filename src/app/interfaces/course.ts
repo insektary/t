@@ -7,3 +7,7 @@ export interface Course {
     startDate: string;
     description: string;
 }
+
+export type CreateCourseType = Omit<Course, 'id' | 'isFavorite' | 'creationDate'>;
+
+export type UpdateCourseType = Omit<Course, 'isFavorite' | 'creationDate'>;
