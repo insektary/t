@@ -26,6 +26,8 @@ describe('BorderGreenDirective', () => {
 
     });
 
+    // Not perfect tests. May be errors in first and last dates of mounth
+
     it('should have skyblue border', () => {
         component.startDate = moment().add(5, 'days').format();
         fixture.detectChanges();
