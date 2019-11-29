@@ -28,7 +28,7 @@ export class AddCourseComponent implements OnInit {
     }
 
     onCancel() {
-        
+
     }
 
 }

@@ -11,11 +11,14 @@
             </div>
             <div class="form-section form-section--short">
                 <label for="date">Date</label>
-                <input id="date" formControlName="date" />
+                <input id="date" formControlName="date" type="number" />
             </div>
             <div class="form-section form-section--short">
                 <label for="duration">Duration</label>
-                <input id="duration" formControlName="duration" />
+                <div class="form-section-row">
+                    <input id="duration" formControlName="duration" type="number" />
+                    <span>{{addCourseForm.value.duration | durationFormatter}}</span>
+                </div>
             </div>
             <div class="button-block">
                 <app-button type="submit" [title]="'Login'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
