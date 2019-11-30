@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder} from '@angular/forms';
+
+type FormValuesType = {
+    title: string,
+    description: string,
+    startDate: string,
+    duration: number
+}
 
 @Component({
     selector: 'app-add-course',
@@ -8,27 +14,22 @@ import {FormGroup, FormBuilder} from '@angular/forms';
 })
 export class AddCourseComponent implements OnInit {
 
-    addCourseForm: FormGroup;
-
-    constructor(private fb: FormBuilder) { }
-
-    ngOnInit() {
-        this.addCourseForm = this.fb.group({
-            title: '',
-            description: '',
-            date: null,
-            duration: null,
-            authors: ''
-        });
+    public formValues: FormValuesType = {
+        title: '',
+        description: '',
+        startDate: '',
+        duration: null
     }
 
-    onSubmit() {
-        console.log('Add course with next params:');
-        console.log(this.addCourseForm.value);
+    constructor() { }
+
+    ngOnInit() {
     }
 
     onCancel() {
-
     }
 
+    onSubmit() {
+        console.log(this.formValues);
+    }
 }

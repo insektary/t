@@ -17,6 +17,7 @@ import {FilterPipe} from './filter.pipe';
 import {OrderByPipe} from './order-by.pipe';
 import {AuthPageComponent} from './auth-page/auth-page.component';
 import {AddCourseComponent} from './add-course/add-course.component';
+import {TextareaComponent} from './textarea-component/textarea-component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import {AddCourseComponent} from './add-course/add-course.component';
         FilterPipe,
         OrderByPipe,
         AuthPageComponent,
-        AddCourseComponent
+        AddCourseComponent,
+        TextareaComponent
     ],
     imports: [
         BrowserModule,

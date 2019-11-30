@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ButtonComponent} from '../button/button.component';
+import {InputComponent} from '../input/input.component';
+import {TextareaComponent} from '../textarea-component/textarea-component';
+import {DurationFormatterPipe} from '../duration-formatter.pipe';
 import {AddCourseComponent} from './add-course.component';
 
 describe('AddCourseComponent', () => {
@@ -10,8 +13,11 @@ describe('AddCourseComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
         declarations: [
+            TextareaComponent,
+            DurationFormatterPipe,
             AddCourseComponent,
-            ButtonComponent
+            ButtonComponent,
+            InputComponent
         ],
         imports: [
             FormsModule,
@@ -32,16 +38,21 @@ describe('AddCourseComponent', () => {
     });
 
     it('testing component-to-form binding', () => {
-        component.addCourseForm.controls['title'].setValue('test-title');
-        component.addCourseForm.controls['description'].setValue('test-description');
-        component.addCourseForm.controls['date'].setValue('123456789');
-        component.addCourseForm.controls['duration'].setValue('987654321');
-
         const inputs = fixture.debugElement.nativeElement.querySelectorAll('.form-section input');
         const textarea = fixture.debugElement.nativeElement.querySelector('.form-section textarea');
-        expect(inputs[0].value).toBe('test-title');
-        expect(inputs[1].value).toBe('123456789');
-        expect(inputs[2].value).toBe('987654321');
-        expect(textarea.value).toBe('test-description');
-    })
+
+        inputs[0].value = 'title';
+        inputs[0].dispatchEvent(new Event('input'));
+        inputs[1].value = 'date';
+        inputs[1].dispatchEvent(new Event('input'));
+        inputs[2].value = 999;
+        inputs[2].dispatchEvent(new Event('input'));
+        textarea.value = 'description';
+        textarea.dispatchEvent(new Event('input'));
+
+        expect(component.formValues.title).toBe('title');
+        expect(component.formValues.startDate).toBe('date');
+        expect(component.formValues.description).toBe('description');
+        // TODO fix types problem with input type="number"
+    });
 });

@@ -1,29 +1,27 @@
 <div class="add-course-container">
     <div class="add-course-content">
-        <form [formGroup]="addCourseForm" (submit)="onSubmit()">
-            <div class="form-section">
-                <label for="title">Title</label>
-                <input id="title" formControlName="title" />
+        <div class="form-section">
+            <label for="title">Title</label>
+            <app-input [(value)]="formValues.title" [isLong]="true" ></app-input>
+        </div>
+        <div class="form-section">
+            <label for="description">Description</label>
+            <app-textarea [(value)]="formValues.description"></app-textarea>
+        </div>
+        <div class="form-section form-section--short">
+            <label for="date">Date</label>
+            <app-input [(value)]="formValues.startDate" ></app-input>
+        </div>
+        <div class="form-section form-section--short">
+            <label for="duration">Duration</label>
+            <div class="form-section-row">
+                <app-input [(value)]="formValues.duration" [type]="'number'" ></app-input>
+                <span>{{formValues.duration | durationFormatter}}</span>
             </div>
-            <div class="form-section">
-                <label for="description">Description</label>
-                <textarea id="description" formControlName="description"></textarea>
-            </div>
-            <div class="form-section form-section--short">
-                <label for="date">Date</label>
-                <input id="date" formControlName="date" type="number" />
-            </div>
-            <div class="form-section form-section--short">
-                <label for="duration">Duration</label>
-                <div class="form-section-row">
-                    <input id="duration" formControlName="duration" type="number" />
-                    <span>{{addCourseForm.value.duration | durationFormatter}}</span>
-                </div>
-            </div>
-            <div class="button-block">
-                <app-button type="submit" [title]="'Login'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
-                <app-button (onclick)="onCancel()" [title]="'Cancel'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
-            </div>
-        </form>
+        </div>
+        <div class="button-block">
+            <app-button (onclick)="onSubmit()" [title]="'Login'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+            <app-button (onclick)="onCancel()" [title]="'Cancel'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+        </div>
     </div>
 </div>

@@ -25,18 +25,18 @@ describe('InputComponent', () => {
     });
 
     it('test change', () => {
-        spyOn(component, 'valueChange');
+        spyOn(component, 'updateValue');
         const input = fixture.debugElement.nativeElement.querySelector('input');
         input.value = 'test';
         input.dispatchEvent(new Event('input'));
 
-        expect(component.valueChange).toHaveBeenCalledWith('test');
+        expect(component.updateValue).toHaveBeenCalledWith('test');
     });
 
     it('test eventEmitter', () => {
-        spyOn(component.onchange, 'emit');
-        component.valueChange('test');
+        spyOn(component.valueChange, 'emit');
+        component.updateValue('test');
 
-        expect(component.onchange.emit).toHaveBeenCalledWith('test');
+        expect(component.valueChange.emit).toHaveBeenCalledWith('test');
     });
 });
