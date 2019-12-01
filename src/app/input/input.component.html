@@ -1,4 +1,11 @@
-<div class="input-container">
+<div class="input-container" [ngClass]="{'input-container--long': isLong, 'input-container--withLens': withLens}">
     <span class="lens" *ngIf="withLens">&#9906;</span>
-    <input class="input-field" [placeholder]="placeholder" [ngModel]="value" (ngModelChange)="valueChange($event)"/>
+    <input
+        class="input-field"
+        [ngClass]="{'input-field--long': isLong}"
+        [type]="type"
+        [placeholder]="placeholder"
+        #inputElement [value]="value"
+        (input)="updateValue(inputElement.value)"
+    />
 </div>

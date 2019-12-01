@@ -14,12 +14,12 @@ export class CourseListComponent implements OnInit {
     @Input() public filter$: string;
     public courseList: Course[] = [];
 
-    constructor(private coursesService: CoursesService) {
-        
+    constructor(public coursesService: CoursesService) {
+
     }
 
     ngOnInit() {
-        this.courseList = this.coursesService.getData();
+
     }
 
     deleteCourse(id: number) {
@@ -27,8 +27,6 @@ export class CourseListComponent implements OnInit {
 
         if (isConfirm) {
             this.coursesService.deleteCourse(id);
-
-            this.courseList = this.coursesService.getData();
         }
     }
 

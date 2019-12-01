@@ -1,6 +1,6 @@
 <div class="search-container">
     <div class="search-content">
-        <app-input [withLens]="true" [placeholder]="'Text to search'" (onchange)="foundedValueChange($event)"></app-input>
+        <app-input [withLens]="true" [placeholder]="'Text to search'" [(value)]="value"></app-input>
         <app-button (onclick)="onClick()" [title]='buttonTitle' [size]="'BIG'" [color]="'GREEN'"></app-button>
     </div>
 </div>

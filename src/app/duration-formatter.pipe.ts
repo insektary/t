@@ -6,6 +6,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class DurationFormatterPipe implements PipeTransform {
 
     transform(value: number): string {
+        if (!value) {
+            return '';
+        }
+
 		if (value < 60) {
 			return `${String(value)} m`;
 		}

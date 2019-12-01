@@ -1,0 +1,27 @@
+<div class="add-course-container">
+    <div class="add-course-content">
+        <div class="form-section">
+            <label for="title">Title</label>
+            <app-input [(value)]="formValues.title" [isLong]="true" ></app-input>
+        </div>
+        <div class="form-section">
+            <label for="description">Description</label>
+            <app-textarea [(value)]="formValues.description"></app-textarea>
+        </div>
+        <div class="form-section form-section--short">
+            <label for="date">Date</label>
+            <app-input [(value)]="formValues.startDate" ></app-input>
+        </div>
+        <div class="form-section form-section--short">
+            <label for="duration">Duration</label>
+            <div class="form-section-row">
+                <app-input [(value)]="formValues.duration" [type]="'number'" ></app-input>
+                <span>{{formValues.duration | durationFormatter}}</span>
+            </div>
+        </div>
+        <div class="button-block">
+            <app-button (onclick)="onSubmit()" [title]="'Login'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+            <app-button (onclick)="onCancel()" [title]="'Cancel'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+        </div>
+    </div>
+</div>

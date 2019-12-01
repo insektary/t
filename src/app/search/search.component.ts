@@ -7,24 +7,19 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-    private buttonTitle: string;
-    public foundedValue: string;
+    public buttonTitle: string;
+    public value: string = '';
     @Output() private startSearch: EventEmitter<string> = new EventEmitter();
 
     constructor() {
         this.buttonTitle = 'Search';
-        this.foundedValue = '';
     }
 
     ngOnInit() {
     }
 
-    foundedValueChange(value) {
-        this.foundedValue = value;
-    }
-
     onClick() {
-        this.startSearch.emit(this.foundedValue);
+        this.startSearch.emit(this.value);
     }
 
 }

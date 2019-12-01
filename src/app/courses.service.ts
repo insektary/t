@@ -84,7 +84,7 @@ export class CoursesService {
 
         return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
-    
+
     getData(): Course[] {
         return this.courseList;
     }
@@ -103,7 +103,7 @@ export class CoursesService {
             duration,
             startDate,
             description
-        })
+        });
     }
 
     getCourseById(foundedId: number): Course {
@@ -129,7 +129,7 @@ export class CoursesService {
             }
 
             return course;
-        })
+        });
     }
 
     deleteCourse(foundedId: number): void {

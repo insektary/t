@@ -9,7 +9,9 @@ import {AuthService} from './auth.service';
 })
 export class AppComponent implements OnInit {
 	title = 'angular-mentoring';
-	isAuth: boolean = false;
+	isAuthMode: boolean = false;
+	isAddCourseMode: boolean = true;
+	isViewMode: boolean = false;
 	currentSearch = '';
 
 	constructor(private authService: AuthService) {
@@ -17,7 +19,7 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.isAuth = this.authService.isAuthenticated();
+
 	}
 	
 	setSearchedValue(value: string) {
