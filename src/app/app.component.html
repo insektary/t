@@ -1,11 +1,5 @@
 <div class="app-container">
     <app-header></app-header>
-    <app-auth-page *ngIf="isAuthMode"></app-auth-page>
-    <app-add-course *ngIf="isAddCourseMode"></app-add-course>
-    <div *ngIf="isViewMode">
-        <app-breadcrumbs></app-breadcrumbs>
-        <app-search (startSearch)="setSearchedValue($event)"></app-search>
-        <app-course-list [filter$]="currentSearch"></app-course-list>
-    </div>
+    <router-outlet></router-outlet>
     <app-footer></app-footer>
 </div>

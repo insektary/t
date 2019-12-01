@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Course} from 'src/app/interfaces/course';
 import {CoursesService} from '../courses.service';
 
@@ -10,11 +11,13 @@ import {CoursesService} from '../courses.service';
 })
 export class CourseListComponent implements OnInit {
 
-
-    @Input() public filter$: string;
     public courseList: Course[] = [];
+    public filter$: string = '';
 
-    constructor(public coursesService: CoursesService) {
+    constructor(
+        public coursesService: CoursesService,
+        public router: Router
+    ) {
 
     }
 
@@ -31,7 +34,11 @@ export class CourseListComponent implements OnInit {
     }
 
     addCourse() {
-        console.log('New course was added');
+        this.router.navigateByUrl('/courses-new');
     }
+
+    setSearchedValue(value: string) {
+		this.filter$ = value;
+	}
 
 }

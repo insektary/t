@@ -1,6 +1,8 @@
 <div class="list-container">
+    <app-breadcrumbs></app-breadcrumbs>
+    <app-search (startSearch)="setSearchedValue($event)"></app-search>
     <div class="list-content">
-        <app-button [title]="'+ Add course'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+        <app-button (onclick)="addCourse()" [title]="'+ Add course'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
         <div class="empty-paceholder" *ngIf='!this.coursesService.getData() || this.coursesService.getData().length === 0'>No data. Fill free to add new course</div>
         <div class="courses">
             <app-course
