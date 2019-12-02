@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 
 @Component({
@@ -10,8 +10,8 @@ import {AuthService} from '../auth.service';
 })
 export class AuthPageComponent implements OnInit {
 
-    public email: string = '';
-    public password: string = '';
+    public email = '';
+    public password = '';
 
     constructor(
         private authService: AuthService,

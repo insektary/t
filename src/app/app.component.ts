@@ -4,17 +4,17 @@ import {AuthService} from './auth.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-	styleUrls: ['./app.component.less'],
-	providers: [AuthService]
+    styleUrls: ['./app.component.less'],
+    providers: [AuthService]
 })
 export class AppComponent implements OnInit {
-	title = 'angular-mentoring';
+    title = 'angular-mentoring';
 
-	constructor() {
+    constructor() {
 
-	}
+    }
 
-	ngOnInit() {
+    ngOnInit() {
 
-	}
+    }
 }

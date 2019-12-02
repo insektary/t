@@ -10,14 +10,14 @@ export class DurationFormatterPipe implements PipeTransform {
             return '';
         }
 
-		if (value < 60) {
-			return `${String(value)} m`;
-		}
-		
-		const integerPart = value / 60;
-		const decimalPart = value % 60;
+        if (value < 60) {
+            return `${String(value)} m`;
+        }
 
-		return `${String(Math.round(integerPart))} h ${decimalPart ? `${String(decimalPart)} m` : ''}`;
+        const integerPart = value / 60;
+        const decimalPart = value % 60;
+
+        return `${String(Math.round(integerPart))} h ${decimalPart ? `${String(decimalPart)} m` : ''}`;
     }
 
 }

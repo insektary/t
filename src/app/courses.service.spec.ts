@@ -20,23 +20,23 @@ const testList = [
         startDate: '2019-11-04T12:37:21+0000',
         description: 'test'
     }
-]
+];
 
 const newCourse = {
     title: 'new',
     startDate: '2019-11-04T12:37:21+0000',
     description: 'new',
     duration: 130
-}
+};
 
 describe('CoursesService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
-    let testService = new CoursesService();
+    const testService = new CoursesService();
 
     beforeEach(() => {
         testService.courseList = testList;
-    })
+    });
 
     it('should be created', () => {
         const service: CoursesService = TestBed.get(CoursesService);
@@ -72,7 +72,7 @@ describe('CoursesService', () => {
 
         expect(testService.courseList.find(({id}) => id === 1)).toBeFalsy();
     });
-    
+
     it('should update item', () => {
         testService.updateCourse({id: 1, ...newCourse});
 
@@ -81,5 +81,5 @@ describe('CoursesService', () => {
         expect(updatedItem.startDate).toBe(newCourse.startDate);
         expect(updatedItem.description).toBe(newCourse.description);
         expect(updatedItem.duration).toBe(newCourse.duration);
-    })
+    });
 });

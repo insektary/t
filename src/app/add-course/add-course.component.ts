@@ -2,18 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CoursesService} from '../courses.service';
 
-type FormValuesType = {
-    title: string,
-    description: string,
-    startDate: string,
-    duration: number
+interface FormValuesType {
+    title: string;
+    description: string;
+    startDate: string;
+    duration: number;
 }
 
 @Component({
     selector: 'app-add-course',
     templateUrl: './add-course.component.html',
-    styleUrls: ['./add-course.component.less'],
-    providers: [CoursesService]
+    styleUrls: ['./add-course.component.less']
 })
 export class AddCourseComponent implements OnInit {
 
@@ -23,7 +22,7 @@ export class AddCourseComponent implements OnInit {
         description: '',
         startDate: '',
         duration: null
-    }
+    };
 
     constructor(
         public route: ActivatedRoute,
@@ -39,7 +38,7 @@ export class AddCourseComponent implements OnInit {
         }
 
         const course = this.coursesService.getCourseById(Number(this.routeId));
-        
+
         if (course) {
             this.formValues = course;
         } else {
@@ -58,6 +57,6 @@ export class AddCourseComponent implements OnInit {
             this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)});
         }
 
-        this.router.navigateByUrl('/courses');
+        this.router.navigate(['/courses']);
     }
 }

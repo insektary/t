@@ -18,6 +18,7 @@ import {AuthPageComponent} from './auth-page/auth-page.component';
 import {AddCourseComponent} from './add-course/add-course.component';
 import {TextareaComponent} from './textarea-component/textarea-component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {CoursesService} from './courses.service';
 
 const appRoutes: Routes = [
     {
@@ -81,7 +82,7 @@ const appRoutes: Routes = [
             }
         )
     ],
-    providers: [],
+    providers: [CoursesService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

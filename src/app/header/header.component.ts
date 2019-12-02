@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 
 @Component({
@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
 
     logOff() {
         this.authService.logOut();
-        console.log('off')
         this.router.navigateByUrl('/auth');
     }
 

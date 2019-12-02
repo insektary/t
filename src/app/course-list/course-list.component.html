@@ -8,6 +8,7 @@
             <app-course
                 *ngFor="let item of this.coursesService.getData() | filter:(filter$) | orderBy"
                 (ondelete)="deleteCourse($event)"
+                (onedit)="editCourse($event)"
                 [item]="item"
                 >
             </app-course>

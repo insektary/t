@@ -6,13 +6,12 @@ import {CoursesService} from '../courses.service';
 @Component({
     selector: 'app-course-list',
     templateUrl: './course-list.component.html',
-    styleUrls: ['./course-list.component.less'],
-    providers: [CoursesService]
+    styleUrls: ['./course-list.component.less']
 })
 export class CourseListComponent implements OnInit {
 
     public courseList: Course[] = [];
-    public filter$: string = '';
+    public filter$ = '';
 
     constructor(
         public coursesService: CoursesService,
@@ -33,12 +32,16 @@ export class CourseListComponent implements OnInit {
         }
     }
 
+    editCourse(id: number) {
+        this.router.navigateByUrl(`courses/${id}`);
+    }
+
     addCourse() {
-        this.router.navigateByUrl('/courses-new');
+        this.router.navigateByUrl('/courses/new');
     }
 
     setSearchedValue(value: string) {
-		this.filter$ = value;
-	}
+        this.filter$ = value;
+    }
 
 }
