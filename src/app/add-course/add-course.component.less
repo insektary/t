@@ -1,0 +1,44 @@
+.add-course-container {
+    height: 84vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-course-content {
+    font-family: Calibri;
+    color: grey;
+    border: 1px solid rgb(211, 211, 211);
+    box-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+    border-radius: 5px;
+    width: 700px;
+    padding: 24px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin: 10px 0 10px 0;
+
+    &-row {
+        display: flex;
+        flex-direction: row;
+
+        & span {
+            padding-left: 10px;
+            padding-top: 6px;
+        }
+    }
+
+    & label {
+        padding: 10px 10px 10px 0;
+    }
+}
+
+.button-block {
+    display: flex;
+    & * {
+        margin-right: 10px;
+    }
+}

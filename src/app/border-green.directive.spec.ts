@@ -5,27 +5,6 @@ import * as moment from 'moment';
 import {By} from '@angular/platform-browser';
 import {BorderGreenDirective} from './border-green.directive';
 
-const DATE = '2019-11-18T12:37:21+0000';
-const DATE2 = '2019-11-1T12:37:21+0000';
-
-const getPastDateFrom2WeeksInterval = () => {
-    const currentDate = moment();
-    const year = parseInt(currentDate.format('YYYY'));
-    const mounth = parseInt(currentDate.format('MM'));
-    const day = parseInt(currentDate.format('DD'));
-
-    return `${year}-${mounth}-${day - 1}T12:37:21+0000`;
-}
-
-const getFutureDate = () => {
-    const currentDate = moment();
-    const year = parseInt(currentDate.format('YYYY'));
-    const mounth = parseInt(currentDate.format('MM'));
-    const day = parseInt(currentDate.format('DD'));
-
-    return `${year}-${mounth}-${day + 1}T12:37:21+0000`;
-}
-
 @Component({
     template: `<div appBorderGreen [startDate]='startDate'>Test</div>`
 })
@@ -50,7 +29,7 @@ describe('BorderGreenDirective', () => {
     // Not perfect tests. May be errors in first and last dates of mounth
 
     it('should have skyblue border', () => {
-        component.startDate = getFutureDate();
+        component.startDate = moment().add(5, 'days').format();
         fixture.detectChanges();
         const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
 
@@ -58,7 +37,7 @@ describe('BorderGreenDirective', () => {
     });
 
     it('should have greenyellow border', () => {
-        component.startDate = getPastDateFrom2WeeksInterval();
+        component.startDate = moment().subtract(5, 'days').format();
         fixture.detectChanges();
         const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
 
