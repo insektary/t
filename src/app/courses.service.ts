@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Course, CreateCourseType, UpdateCourseType} from 'src/app/interfaces/course';
 import * as moment from 'moment';
 
@@ -8,73 +9,10 @@ import * as moment from 'moment';
 export class CoursesService {
 
     public courseList: Course[];
+    public editableCourse: Course;
 
-    constructor() {
-        this.courseList = [
-            {
-                id: 1,
-                title: 'Angular',
-                isFavorite: false,
-                creationDate: '2019-11-04T12:37:21+0000',
-                duration: 45,
-                startDate: '2019-11-23T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {
-                id: 2,
-                title: 'React',
-                isFavorite: true,
-                creationDate: '2019-11-07T12:37:21+0000',
-                duration: 45,
-                startDate: '2019-11-24T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {
-                id: 3,
-                title: 'NodeJS',
-                isFavorite: false,
-                creationDate: '2019-11-01T12:37:21+0000',
-                duration: 120,
-                startDate: '2019-11-30T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {
-                id: 4,
-                title: 'Vue',
-                isFavorite: false,
-                creationDate: '2019-11-10T12:37:21+0000',
-                duration: 60,
-                startDate: '2019-12-04T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {
-                id: 5,
-                title: 'Python',
-                isFavorite: false,
-                creationDate: '2019-11-09T12:37:21+0000',
-                duration: 150,
-                startDate: '2019-12-09T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {
-                id: 6,
-                title: 'Java',
-                isFavorite: false,
-                creationDate: '2019-11-012T12:37:21+0000',
-                duration: 250,
-                startDate: '2019-12-14T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            },
-            {
-                id: 7,
-                title: '.NET',
-                isFavorite: false,
-                creationDate: '2019-11-14T12:37:21+0000',
-                duration: 130,
-                startDate: '2019-12-25T12:37:21+0000',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            }
-        ];
+    constructor(private http: HttpClient) {
+        this.courseList = [];
     }
 
     generateId(): number {
@@ -84,55 +22,69 @@ export class CoursesService {
 
         return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
+    
+    fetchData() {
+        this.http.get('api/courses').subscribe((data: Course[]) => this.courseList = data);
+    }
 
     getData(): Course[] {
         return this.courseList;
     }
 
+    getCourseById(id: number): Promise<Course[]> {
+        return new Promise((res, rej) => {
+            this.http.get(`api/courses?id=${id}`).subscribe((data: Course[]) => {
+                if (data && data.length) {
+                    res(data);
+                } else {
+                    rej();
+                }
+            });
+        });
+    }
+
+    deleteCourse(id: number): Promise<void> {
+        return new Promise((res, rej) => {
+            this.http.delete(`api/courses?id=${id}`).subscribe(() => res());
+        });
+    }
+
     createCourse({
-        title,
-        startDate,
+        name,
+        date,
         description,
-        duration
+        length
     }: CreateCourseType): void {
         this.courseList.push({
             id: this.generateId(),
-            title,
-            isFavorite: false,
+            name,
+            isTopRated: false,
             creationDate: moment().format(),
-            duration,
-            startDate,
+            length,
+            date,
             description
         });
     }
 
-    getCourseById(foundedId: number): Course {
-        return this.courseList.find(({id}) => id === foundedId);
-    }
-
     updateCourse({
         id,
-        title,
-        startDate,
+        name,
+        date,
         description,
-        duration
+        length
     }: UpdateCourseType): void {
         this.courseList = this.courseList.map((course) => {
             if (course.id === id) {
                 return {
                     ...course,
-                    title,
-                    startDate,
+                    name,
+                    date,
                     description,
-                    duration
+                    length
                 };
             }
 
             return course;
         });
-    }
-
-    deleteCourse(foundedId: number): void {
-        this.courseList = this.courseList.filter(({id}) => id !== foundedId);
     }
 }

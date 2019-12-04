@@ -2,27 +2,27 @@ import {Course as CourseInterface} from 'src/app/interfaces/course';
 
 export class Course implements CourseInterface {
     public id: number;
-    public title: string;
-    public isFavorite: boolean;
+    public name: string;
+    public isTopRated: boolean;
     public creationDate: string;
-    public duration: number;
-    public startDate: string;
+    public length: number;
+    public date: string;
     public description: string;
 
     constructor({
         id,
-        title,
-        isFavorite,
+        name,
+        isTopRated,
         creationDate,
-        duration,
+        length,
         description
     }: CourseInterface) {
         this.id = id;
-        this.title = title;
-        this.isFavorite = isFavorite;
+        this.name = name;
+        this.isTopRated = isTopRated;
         this.creationDate = creationDate;
-        this.duration = duration;
-        this.startDate = this.startDate;
+        this.length = length;
+        this.date = this.date;
         this.description = description;
     }
 }
