@@ -10,7 +10,6 @@ import {CoursesService} from '../courses.service';
 })
 export class CourseListComponent implements OnInit {
 
-    public courseList: Course[] = [];
     public filter$ = '';
 
     constructor(
@@ -21,14 +20,15 @@ export class CourseListComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.coursesService.fetchData();
     }
 
     deleteCourse(id: number) {
         const isConfirm = confirm('Подтвердите удаление курса');
 
         if (isConfirm) {
-            this.coursesService.deleteCourse(id);
+            this.coursesService.deleteCourse(id)
+                .then(() => this.coursesService.fetchData());
         }
     }
 

@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
@@ -75,6 +76,7 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         RouterModule.forRoot(
             appRoutes,
             {

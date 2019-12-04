@@ -3,10 +3,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CoursesService} from '../courses.service';
 
 interface FormValuesType {
-    title: string;
+    name: string;
     description: string;
-    startDate: string;
-    duration: number;
+    date: string;
+    length: number;
 }
 
 @Component({
@@ -18,10 +18,10 @@ export class AddCourseComponent implements OnInit {
 
     public routeId?: string;
     public formValues: FormValuesType = {
-        title: '',
+        name: '',
         description: '',
-        startDate: '',
-        duration: null
+        date: '',
+        length: null
     };
 
     constructor(
@@ -37,13 +37,9 @@ export class AddCourseComponent implements OnInit {
             return;
         }
 
-        const course = this.coursesService.getCourseById(Number(this.routeId));
-
-        if (course) {
-            this.formValues = course;
-        } else {
-            this.router.navigateByUrl('/404');
-        }
+        this.coursesService.getCourseById(Number(this.routeId))
+            .then(([data]) => this.formValues = data)
+            .catch(() => this.router.navigateByUrl('/404'));
     }
 
     onCancel() {

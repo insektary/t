@@ -45,8 +45,8 @@ describe('AddCourseComponent', () => {
         textarea.value = 'description';
         textarea.dispatchEvent(new Event('input'));
 
-        expect(component.formValues.title).toBe('title');
-        expect(component.formValues.startDate).toBe('date');
+        expect(component.formValues.name).toBe('title');
+        expect(component.formValues.date).toBe('date');
         expect(component.formValues.description).toBe('description');
         // TODO fix types problem with input type="number"
     });

@@ -8,19 +8,19 @@ const TWO_WEEKS_DURATION = 1209600000;
 })
 export class BorderGreenDirective implements OnChanges {
 
-    @Input() public startDate: string;
+    @Input() public date: string;
 
     constructor(private elementRef: ElementRef) {
     }
 
     ngOnChanges() {
         const currentDate = moment();
-        const startDate = moment(this.startDate);
-        const interval = moment(currentDate).diff(startDate);
+        const date = moment(this.date);
+        const interval = moment(currentDate).diff(date);
 
-        if (currentDate.isAfter(startDate) && interval < TWO_WEEKS_DURATION) {
+        if (currentDate.isAfter(date) && interval < TWO_WEEKS_DURATION) {
             this.elementRef.nativeElement.style.border = 'solid 1px greenyellow';
-        } else if (currentDate.isBefore(startDate)) {
+        } else if (currentDate.isBefore(date)) {
             this.elementRef.nativeElement.style.border = 'solid 1px skyblue';
         }
     }

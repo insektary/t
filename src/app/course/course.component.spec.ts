@@ -10,11 +10,11 @@ describe('CourseComponent', () => {
     let fixture: ComponentFixture<CourseComponent>;
     const itemParams = {
         id: 1,
-        title: 'Video course 1. Name tag',
-        isFavorite: false,
+        name: 'Video course 1. Name tag',
+        isTopRated: false,
         creationDate: '12.12.2001',
-        duration: 130,
-        startDate: '9 Nov, 2019',
+        length: 130,
+        date: '9 Nov, 2019',
         description: 'Lorem ipsum dolor sit amet'
     };
 
@@ -45,10 +45,10 @@ describe('CourseComponent', () => {
     it('check title', () => {
         const title = fixture.debugElement.query(By.css('.course-title'));
 
-        expect(title.nativeElement.innerText).toBe(itemParams.title.toUpperCase());
+        expect(title.nativeElement.innerText).toBe(itemParams.name.toUpperCase());
     });
 
-    it('check duration and startDate', () => {
+    it('check duration and date', () => {
         const duration = fixture.debugElement.query(By.css('.course-duration'));
 
         expect(duration.nativeElement.innerText).toContain('2 h 10 m');
