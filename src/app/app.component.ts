@@ -1,28 +1,13 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {AuthService} from './auth.service';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.less'],
-    providers: [AuthService]
+    styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent {
     title = 'angular-mentoring';
-    private subscription: Subscription;
 
-    constructor(private activateRoute: ActivatedRoute) {
-        // this.subscription = activateRoute.url.subscribe(url => console.log(url));
-        // console.log(activateRoute.snapshot.paramMap.get('id'))
-    }
-
-    ngOnInit() {
-
-    }
-
-    ngOnChanges() {
-        // console.log(this.activateRoute.snapshot)
+    constructor() {
     }
 }
