@@ -38,7 +38,7 @@ export class AddCourseComponent implements OnInit {
         }
 
         this.coursesService.getCourseById(Number(this.routeId))
-            .then(([data]) => this.formValues = data)
+            .then((data) => this.formValues = data)
             .catch(() => this.router.navigateByUrl('/404'));
     }
 
@@ -48,11 +48,11 @@ export class AddCourseComponent implements OnInit {
 
     onSubmit() {
         if (!this.routeId) {
-            this.coursesService.createCourse(this.formValues);
+            this.coursesService.createCourse(this.formValues)
+                .then(() => this.router.navigate(['/courses']));
         } else {
-            this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)});
+            this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)})
+                .then(() => this.router.navigate(['/courses']));
         }
-
-        this.router.navigate(['/courses']);
     }
 }

@@ -31,9 +31,9 @@ export class CoursesService {
         return this.courseList;
     }
 
-    getCourseById(id: number): Promise<Course[]> {
+    getCourseById(id: number): Promise<Course> {
         return new Promise((res, rej) => {
-            this.http.get(`api/courses?id=${id}`).subscribe((data: Course[]) => {
+            this.http.get(`api/courses/${id}`).subscribe((data: Course) => {
                 if (data && data.length) {
                     res(data);
                 } else {
@@ -45,7 +45,7 @@ export class CoursesService {
 
     deleteCourse(id: number): Promise<void> {
         return new Promise((res, rej) => {
-            this.http.delete(`api/courses?id=${id}`).subscribe(() => res());
+            this.http.delete(`api/courses/${id}`).subscribe(() => res());
         });
     }
 
@@ -54,15 +54,14 @@ export class CoursesService {
         date,
         description,
         length
-    }: CreateCourseType): void {
-        this.courseList.push({
-            id: this.generateId(),
-            name,
-            isTopRated: false,
-            creationDate: moment().format(),
-            length,
-            date,
-            description
+    }: CreateCourseType): Promise<void> {
+        return new Promise((res, rej) => {
+            this.http.post('api/courses', {
+                name,
+                date,
+                description,
+                length
+            }).subscribe(() => res());
         });
     }
 
@@ -72,19 +71,14 @@ export class CoursesService {
         date,
         description,
         length
-    }: UpdateCourseType): void {
-        this.courseList = this.courseList.map((course) => {
-            if (course.id === id) {
-                return {
-                    ...course,
-                    name,
-                    date,
-                    description,
-                    length
-                };
-            }
-
-            return course;
+    }: UpdateCourseType): Promise<void> {
+        return new Promise((res, rej) => {
+            this.http.patch(`api/courses/${id}`, {
+                name,
+                date,
+                description,
+                length
+            }).subscribe(() => res());
         });
     }
 }
