@@ -23,8 +23,8 @@ export class CoursesService {
         return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
     
-    fetchData() {
-        this.http.get('api/courses').subscribe((data: Course[]) => this.courseList = data);
+    fetchData(textFragment: string = '') {
+        this.http.get(`api/courses?textFragment=${textFragment}`).subscribe((data: Course[]) => this.courseList = data);
     }
 
     getData(): Course[] {

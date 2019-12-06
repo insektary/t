@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CoursesService} from '../courses.service';
+import {AuthService} from '../auth.service';
 
 @Component({
     selector: 'app-course-list',
@@ -12,6 +13,7 @@ export class CourseListComponent implements OnInit {
     public filter$ = '';
 
     constructor(
+        public authServise: AuthService,
         public coursesService: CoursesService,
         public router: Router
     ) {
@@ -19,7 +21,11 @@ export class CourseListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.coursesService.fetchData();
+        if (this.authServise.isAuthenticated()) {
+            this.coursesService.fetchData();
+        } else {
+            this.router.navigateByUrl('/auth');
+        }
     }
 
     deleteCourse(id: number) {
@@ -40,7 +46,7 @@ export class CourseListComponent implements OnInit {
     }
 
     setSearchedValue(value: string) {
-        this.filter$ = value;
+        this.coursesService.fetchData(value);
     }
 
 }

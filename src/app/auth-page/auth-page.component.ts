@@ -10,7 +10,7 @@ import {AuthService} from '../auth.service';
 })
 export class AuthPageComponent implements OnInit {
 
-    public email = '';
+    public login = '';
     public password = '';
 
     constructor(
@@ -22,8 +22,9 @@ export class AuthPageComponent implements OnInit {
     }
 
     logIn() {
-        this.authService.logIn(this.email, this.password);
-        this.router.navigateByUrl('/courses');
+        this.authService.logIn(this.login, this.password)
+            .then(() => this.router.navigateByUrl('/courses'))
+            .catch(() => console.log('error'));
     }
 
 }
