@@ -12,6 +12,6 @@ describe('FilterPipe', () => {
     });
 
     it('tests filter', () => {
-        expect(pipe.transform([{title: 'test'}, {title: 'another'}], 'te')).toEqual([{title: 'test'}]);
+        expect(pipe.transform([{name: 'test'}, {name: 'another'}], 'te')).toEqual([{name: 'test'}]);
     });
 });
