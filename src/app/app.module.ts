@@ -19,24 +19,31 @@ import {AddCourseComponent} from './add-course/add-course.component';
 import {TextareaComponent} from './textarea-component/textarea-component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CoursesService} from './courses.service';
+import {MainGuard} from './main.guard';
 
 const appRoutes: Routes = [
     {
         path: 'auth',
-        component: AuthPageComponent
+        component: AuthPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'courses',
-        component: CourseListComponent
+        component: CourseListComponent,
+        canActivate: [MainGuard],
+        pathMatch: 'full'
     },
     {
         path: 'courses/new',
         component: AddCourseComponent,
+        canActivate: [MainGuard],
         pathMatch: 'full'
     },
     {
         path: 'courses/:id',
-        component: AddCourseComponent
+        component: AddCourseComponent,
+        canActivate: [MainGuard],
+        pathMatch: 'full'
     },
     {
         path: '',
@@ -45,11 +52,13 @@ const appRoutes: Routes = [
     },
     {
         path: '404',
-        component: PageNotFoundComponent
+        component: PageNotFoundComponent,
+        pathMatch: 'full'
     },
     {
         path: '**',
-        component: PageNotFoundComponent
+        component: PageNotFoundComponent,
+        pathMatch: 'full'
     }
 ];
 
@@ -82,7 +91,7 @@ const appRoutes: Routes = [
             }
         )
     ],
-    providers: [CoursesService],
+    providers: [CoursesService, MainGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -33,11 +33,11 @@ export class CourseListComponent implements OnInit {
     }
 
     editCourse(id: number) {
-        this.router.navigateByUrl(`courses/${id}`);
+        this.router.navigate([`courses/${id}`]);
     }
 
     addCourse() {
-        this.router.navigateByUrl('/courses/new');
+        this.router.navigate(['/courses/new']);
     }
 
     setSearchedValue(value: string) {

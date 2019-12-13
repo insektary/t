@@ -23,7 +23,7 @@ export class AuthPageComponent implements OnInit {
 
     logIn() {
         this.authService.logIn(this.email, this.password);
-        this.router.navigateByUrl('/courses');
+        this.router.navigate(['/courses']);
     }
 
 }

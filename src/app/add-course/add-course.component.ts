@@ -42,12 +42,12 @@ export class AddCourseComponent implements OnInit {
         if (course) {
             this.formValues = course;
         } else {
-            this.router.navigateByUrl('/404');
+            this.router.navigate(['/404']);
         }
     }
 
     onCancel() {
-        this.router.navigateByUrl('/courses');
+        this.router.navigate(['/courses']);
     }
 
     onSubmit() {
