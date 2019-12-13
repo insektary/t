@@ -21,11 +21,7 @@ export class CourseListComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.authServise.isAuthenticated()) {
-            this.coursesService.fetchData();
-        } else {
-            this.router.navigateByUrl('/auth');
-        }
+        this.coursesService.fetchData();
     }
 
     deleteCourse(id: number) {

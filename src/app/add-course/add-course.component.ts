@@ -39,7 +39,7 @@ export class AddCourseComponent implements OnInit {
 
         this.coursesService.getCourseById(Number(this.routeId))
             .then((data) => this.formValues = data)
-            .catch(() => this.router.navigateByUrl('/404'));
+            .catch(() => this.router.navigate(['/404']));
     }
 
     onCancel() {

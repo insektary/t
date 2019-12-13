@@ -19,7 +19,7 @@ export class AuthService {
                         rej();
                     }
                 }, () => rej());
-        })
+        });
     }
 
     logOut(): void {
@@ -34,10 +34,10 @@ export class AuthService {
         return Boolean(this.getToken());
     }
 
-    getUserInfo(): Promise<Object> {
+    getUserInfo(): Promise<object> {
         return new Promise((res, rej) => {
             this.http.post('api/auth/userInfo', {token: this.getToken()})
                 .subscribe((data) => res(data));
-        })
+        });
     }
 }
