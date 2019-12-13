@@ -23,7 +23,7 @@ export class AuthPageComponent implements OnInit {
 
     logIn() {
         this.authService.logIn(this.login, this.password)
-            .then(() => this.router.navigateByUrl('/courses'))
+            .then(() => this.router.navigate(['/courses']))
             .catch(() => console.log('error'));
     }
 
