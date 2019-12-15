@@ -20,6 +20,7 @@ import {TextareaComponent} from './textarea-component/textarea-component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CoursesService} from './courses.service';
 import {MainGuard} from './main.guard';
+import {CourseViewComponent} from './course-view/course-view.component';
 
 const appRoutes: Routes = [
     {
@@ -40,8 +41,14 @@ const appRoutes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'courses/:id',
+        path: 'courses/:id/edit',
         component: AddCourseComponent,
+        canActivate: [MainGuard],
+        pathMatch: 'full'
+    },
+    {
+        path: 'courses/:id/view',
+        component: CourseViewComponent,
         canActivate: [MainGuard],
         pathMatch: 'full'
     },
@@ -80,7 +87,8 @@ const appRoutes: Routes = [
         AuthPageComponent,
         AddCourseComponent,
         TextareaComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        CourseViewComponent
     ],
     imports: [
         BrowserModule,

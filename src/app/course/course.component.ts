@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {Router} from '@angular/router';
 import {Course} from 'src/app/models/course';
 
 @Component({
@@ -13,7 +14,7 @@ export class CourseComponent implements OnInit {
     @Output() public ondelete: EventEmitter<number> = new EventEmitter();
     @Output() public onedit: EventEmitter<number> = new EventEmitter();
 
-    constructor() {
+    constructor(public router: Router) {
     }
 
     ngOnInit() {
@@ -29,6 +30,12 @@ export class CourseComponent implements OnInit {
         const {item: {id}} = this;
 
         this.onedit.emit(id);
+    }
+
+    goToCourseView() {
+        const {item: {id}} = this;
+
+        this.router.navigate([`courses/${id}/view`]);
     }
 
 }
