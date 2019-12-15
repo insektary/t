@@ -13,7 +13,7 @@ export class TokenInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         req = req.clone({
             setHeaders: {
-                Authorization: this.authService.getToken()
+                Authorization: this.authService.getToken() || ''
             }
         });
         return next.handle(req);

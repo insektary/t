@@ -22,7 +22,7 @@ export class CoursesService {
 
         return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
-    
+
     fetchData(textFragment: string = '') {
         this.http.get(`api/courses?textFragment=${textFragment}`).subscribe((data: Course[]) => this.courseList = data);
     }
@@ -31,16 +31,21 @@ export class CoursesService {
         return this.courseList;
     }
 
-    getCourseById(id: number): Promise<Course> {
+    fetchCourseById(id: number): Promise<Course> {
         return new Promise((res, rej) => {
             this.http.get(`api/courses/${id}`).subscribe((data: Course) => {
                 if (data && data.length) {
+                    this.editableCourse = data;
                     res(data);
                 } else {
                     rej();
                 }
             });
         });
+    }
+
+    getCourseById(foundedId: number): Course {
+        return this.courseList.find(({id}) => id === foundedId);
     }
 
     deleteCourse(id: number): Promise<void> {

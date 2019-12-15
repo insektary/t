@@ -11,7 +11,15 @@ import {Course} from '../interfaces/course';
 export class CourseViewComponent implements OnInit {
 
     public routeId?: string;
-    public course: Course;
+    public course: Course = {
+        id: null,
+        name: '',
+        isTopRated: false,
+        creationDate: '',
+        length: null,
+        date: '',
+        description: ''
+    };
 
     constructor(
         public route: ActivatedRoute,
@@ -22,7 +30,8 @@ export class CourseViewComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.course = this.coursesService.getCourseById(Number(this.routeId));
+        this.coursesService.fetchCourseById(Number(this.routeId))
+            .then((course) => this.course = course);
     }
 
 }
