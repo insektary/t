@@ -1,5 +1,5 @@
 <div class="course-container" [ngClass]="{'course-container--favorite': item.isTopRated}" appBorderGreen [date]="item.creationDate">
-    <div class="course-title">{{item.name | uppercase}}{{item.isTopRated ? ' &#9733;' : ''}}</div>
+    <div class="course-title" (click)="goToCourseView()">{{item.name | uppercase}}{{item.isTopRated ? ' &#9733;' : ''}}</div>
     <div class="course-duration">&#9716; {{item.length | durationFormatter}} &#128197; {{item.date | date}}</div>
     <div class="course-description">{{item.description}}</div>
     <div class="course-buttons">
