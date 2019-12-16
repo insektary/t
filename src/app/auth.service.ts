@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -30,8 +31,8 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
-    isAuthenticated(): boolean {
-        return Boolean(this.getToken());
+    isAuthenticated(): Observable<object> {
+        return this.http.post('api/auth/userInfo', {token: this.getToken()});
     }
 
     getUserInfo(): Promise<object> {
