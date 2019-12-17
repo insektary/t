@@ -1,28 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from './auth.service';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-	styleUrls: ['./app.component.less'],
-	providers: [AuthService]
+    styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit {
-	title = 'angular-mentoring';
-	isAuthMode: boolean = false;
-	isAddCourseMode: boolean = true;
-	isViewMode: boolean = false;
-	currentSearch = '';
+export class AppComponent {
+    title = 'angular-mentoring';
 
-	constructor(private authService: AuthService) {
-
-	}
-
-	ngOnInit() {
-
-	}
-	
-	setSearchedValue(value: string) {
-		this.currentSearch = value;
-	}
+    constructor() {
+    }
 }

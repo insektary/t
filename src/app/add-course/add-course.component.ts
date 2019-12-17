@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CoursesService} from '../courses.service';
 
-type FormValuesType = {
-    title: string,
-    description: string,
-    startDate: string,
-    duration: number
+interface FormValuesType {
+    title: string;
+    description: string;
+    startDate: string;
+    duration: number;
 }
 
 @Component({
@@ -14,22 +16,47 @@ type FormValuesType = {
 })
 export class AddCourseComponent implements OnInit {
 
+    public routeId?: string;
     public formValues: FormValuesType = {
         title: '',
         description: '',
         startDate: '',
         duration: null
+    };
+
+    constructor(
+        public route: ActivatedRoute,
+        public router: Router,
+        public coursesService: CoursesService
+    ) {
+        this.routeId = route.snapshot.paramMap.get('id');
     }
 
-    constructor() { }
-
     ngOnInit() {
+        if (!this.routeId) {
+            return;
+        }
+
+        const course = this.coursesService.getCourseById(Number(this.routeId));
+
+        if (course) {
+            this.formValues = course;
+        } else {
+            this.router.navigate(['/404']);
+        }
     }
 
     onCancel() {
+        this.router.navigate(['/courses']);
     }
 
     onSubmit() {
-        console.log(this.formValues);
+        if (!this.routeId) {
+            this.coursesService.createCourse(this.formValues);
+        } else {
+            this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)});
+        }
+
+        this.router.navigate(['/courses']);
     }
 }

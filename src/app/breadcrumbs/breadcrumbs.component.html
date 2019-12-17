@@ -1,7 +1,7 @@
 <div class="breadcrumbs-container">
     <div class="breadcrumbs-content">
         <div *ngFor="let item of breadcrumbs" class="breadcrumbs-content--item">
-            <span>{{item.title}}</span>
+            <span>{{item | uppercase}}</span>
         </div>
     </div>
 </div>
