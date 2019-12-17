@@ -23,7 +23,6 @@ import {CoursesService} from './courses.service';
 import {CourseViewComponent} from './course-view/course-view.component';
 import {TokenInterceptor} from './token-interceptor';
 import {MainGuard} from './main.guard';
-import {CourseViewComponent} from './course-view/course-view.component';
 
 const appRoutes: Routes = [
     {
