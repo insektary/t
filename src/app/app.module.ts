@@ -20,9 +20,9 @@ import {AddCourseComponent} from './add-course/add-course.component';
 import {TextareaComponent} from './textarea-component/textarea-component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CoursesService} from './courses.service';
-import {CourseViewComponent} from './course-view/course-view.component';
 import {TokenInterceptor} from './token-interceptor';
 import {MainGuard} from './main.guard';
+import {CourseViewComponent} from './course-view/course-view.component';
 
 const appRoutes: Routes = [
     {
