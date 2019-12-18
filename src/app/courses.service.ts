@@ -20,6 +20,10 @@ export class CoursesService {
         this.count = this.count + count;
     }
 
+    resetCount() {
+        this.count = 10;
+    }
+
     generateId(): number {
         if (!this.courseList || this.courseList.length === 0) {
             return 1;

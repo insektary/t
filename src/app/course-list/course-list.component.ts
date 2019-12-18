@@ -42,6 +42,7 @@ export class CourseListComponent implements OnInit {
     }
 
     setSearchedValue(value: string) {
+        this.coursesService.resetCount();
         this.coursesService.fetchData(value);
     }
 
