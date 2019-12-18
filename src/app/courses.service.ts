@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Course, CreateCourseType, UpdateCourseType} from 'src/app/interfaces/course';
-import * as moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -10,9 +9,15 @@ export class CoursesService {
 
     public courseList: Course[];
     public editableCourse: Course;
+    public count: number;
 
     constructor(private http: HttpClient) {
         this.courseList = [];
+        this.count = 10;
+    }
+
+    increaseCount(count: number) {
+        this.count = this.count + count;
     }
 
     generateId(): number {
@@ -24,7 +29,8 @@ export class CoursesService {
     }
 
     fetchData(textFragment: string = '') {
-        this.http.get(`api/courses?textFragment=${textFragment}`).subscribe((data: Course[]) => this.courseList = data);
+        this.http.get(`api/courses?count=${this.count || ''}&textFragment=${textFragment}`)
+            .subscribe((data: Course[]) => this.courseList = data);
     }
 
     getData(): Course[] {

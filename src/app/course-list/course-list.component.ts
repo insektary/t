@@ -45,4 +45,8 @@ export class CourseListComponent implements OnInit {
         this.coursesService.fetchData(value);
     }
 
+    addMore() {
+        this.coursesService.increaseCount(10);
+        this.coursesService.fetchData();
+    }
 }
