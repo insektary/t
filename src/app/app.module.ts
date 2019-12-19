@@ -23,6 +23,7 @@ import {CoursesService} from './courses.service';
 import {TokenInterceptor} from './token-interceptor';
 import {MainGuard} from './main.guard';
 import {CourseViewComponent} from './course-view/course-view.component';
+import {LoaderComponent} from './loader/loader.component';
 
 const appRoutes: Routes = [
     {
@@ -90,7 +91,8 @@ const appRoutes: Routes = [
         AddCourseComponent,
         TextareaComponent,
         PageNotFoundComponent,
-        CourseViewComponent
+        CourseViewComponent,
+        LoaderComponent
     ],
     imports: [
         BrowserModule,
@@ -109,7 +111,7 @@ const appRoutes: Routes = [
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true
-        },
+        }
     ],
     bootstrap: [AppComponent]
 })

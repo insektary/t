@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CoursesService} from '../courses.service';
+import {LoaderService} from '../loader.service';
 import {Course} from '../interfaces/course';
 
 @Component({
@@ -24,14 +25,15 @@ export class CourseViewComponent implements OnInit {
     constructor(
         public route: ActivatedRoute,
         public router: Router,
-        public coursesService: CoursesService
+        public coursesService: CoursesService,
+        public loaderService: LoaderService
     ) {
         this.routeId = route.snapshot.paramMap.get('id');
     }
 
     ngOnInit() {
         this.coursesService.fetchCourseById(Number(this.routeId))
-            .then((course) => this.course = course);
+            .subscribe(this.coursesService.subscriber((event) => this.course = event.body));
     }
 
 }

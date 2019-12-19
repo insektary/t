@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CoursesService} from '../courses.service';
 import {AuthService} from '../auth.service';
+import {LoaderService} from '../loader.service';
 
 @Component({
     selector: 'app-course-list',
@@ -15,6 +16,7 @@ export class CourseListComponent implements OnInit {
     constructor(
         public authServise: AuthService,
         public coursesService: CoursesService,
+        public loaderService: LoaderService,
         public router: Router
     ) {
 
