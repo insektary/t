@@ -1,5 +1,6 @@
 <div class="add-course-container">
-    <div class="add-course-content">
+    <app-loader *ngIf="this.loaderService.isLoading"></app-loader>
+    <div class="add-course-content" *ngIf="!this.loaderService.isLoading">
         <div class="form-section">
             <label for="name">Title</label>
             <app-input [(value)]="formValues.name" [isLong]="true" ></app-input>
