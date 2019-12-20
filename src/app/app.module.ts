@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
@@ -19,6 +20,7 @@ import {AddCourseComponent} from './add-course/add-course.component';
 import {TextareaComponent} from './textarea-component/textarea-component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CoursesService} from './courses.service';
+import {TokenInterceptor} from './token-interceptor';
 import {MainGuard} from './main.guard';
 import {CourseViewComponent} from './course-view/course-view.component';
 
@@ -92,6 +94,7 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         RouterModule.forRoot(
             appRoutes,
             {
@@ -99,7 +102,15 @@ const appRoutes: Routes = [
             }
         )
     ],
-    providers: [CoursesService, MainGuard],
+    providers: [
+        CoursesService,
+        MainGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

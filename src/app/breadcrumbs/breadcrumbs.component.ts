@@ -35,8 +35,9 @@ export class BreadcrumbsComponent implements OnInit {
 
         this.breadcrumbs = newUrl.split('/').filter(Boolean).map((item) => {
             const id = parseInt(item, 10);
+
             if (!isNaN(id)) {
-                return this.coursesService.getCourseById(id).title;
+                return this.coursesService.getCourseById(id).name;
             }
 
             return item;

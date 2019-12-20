@@ -3,10 +3,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CoursesService} from '../courses.service';
 
 interface FormValuesType {
-    title: string;
+    name: string;
     description: string;
-    startDate: string;
-    duration: number;
+    date: string;
+    length: number;
 }
 
 @Component({
@@ -18,10 +18,10 @@ export class AddCourseComponent implements OnInit {
 
     public routeId?: string;
     public formValues: FormValuesType = {
-        title: '',
+        name: '',
         description: '',
-        startDate: '',
-        duration: null
+        date: '',
+        length: null
     };
 
     constructor(
@@ -37,13 +37,9 @@ export class AddCourseComponent implements OnInit {
             return;
         }
 
-        const course = this.coursesService.getCourseById(Number(this.routeId));
-
-        if (course) {
-            this.formValues = course;
-        } else {
-            this.router.navigate(['/404']);
-        }
+        this.coursesService.fetchCourseById(Number(this.routeId))
+            .then((data) => this.formValues = data)
+            .catch(() => this.router.navigate(['/404']));
     }
 
     onCancel() {
@@ -52,11 +48,11 @@ export class AddCourseComponent implements OnInit {
 
     onSubmit() {
         if (!this.routeId) {
-            this.coursesService.createCourse(this.formValues);
+            this.coursesService.createCourse(this.formValues)
+                .then(() => this.router.navigate(['/courses']));
         } else {
-            this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)});
+            this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)})
+                .then(() => this.router.navigate(['/courses']));
         }
-
-        this.router.navigate(['/courses']);
     }
 }

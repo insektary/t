@@ -7,7 +7,7 @@ import {Course} from './interfaces/course';
 export class FilterPipe implements PipeTransform {
 
 	transform(list: Course[], chosenFilter: string) {
-		return list.filter((todo) => todo.title.includes(chosenFilter));
+		return list.filter((todo) => todo.name.includes(chosenFilter));
 	}
 
 }

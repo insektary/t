@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Course} from 'src/app/interfaces/course';
 import {CoursesService} from '../courses.service';
+import {AuthService} from '../auth.service';
 
 @Component({
     selector: 'app-course-list',
@@ -10,10 +10,10 @@ import {CoursesService} from '../courses.service';
 })
 export class CourseListComponent implements OnInit {
 
-    public courseList: Course[] = [];
     public filter$ = '';
 
     constructor(
+        public authServise: AuthService,
         public coursesService: CoursesService,
         public router: Router
     ) {
@@ -21,14 +21,15 @@ export class CourseListComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.coursesService.fetchData();
     }
 
     deleteCourse(id: number) {
         const isConfirm = confirm('Подтвердите удаление курса');
 
         if (isConfirm) {
-            this.coursesService.deleteCourse(id);
+            this.coursesService.deleteCourse(id)
+                .then(() => this.coursesService.fetchData());
         }
     }
 
@@ -41,7 +42,12 @@ export class CourseListComponent implements OnInit {
     }
 
     setSearchedValue(value: string) {
-        this.filter$ = value;
+        this.coursesService.resetCount();
+        this.coursesService.fetchData(value);
     }
 
+    addMore() {
+        this.coursesService.increaseCount(10);
+        this.coursesService.fetchData();
+    }
 }

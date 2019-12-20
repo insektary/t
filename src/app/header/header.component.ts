@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     }
 
     logIn() {
-
+        this.router.navigateByUrl('/auth');
     }
 
     logOff() {

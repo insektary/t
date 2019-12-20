@@ -1,13 +1,13 @@
 export interface Course {
     id: number;
-    title: string;
-    isFavorite: boolean;
+    name: string;
+    isTopRated: boolean;
     creationDate: string;
-    duration: number;
-    startDate: string;
+    length: number;
+    date: string;
     description: string;
 }
 
-export type CreateCourseType = Omit<Course, 'id' | 'isFavorite' | 'creationDate'>;
+export type CreateCourseType = Omit<Course, 'id' | 'isTopRated' | 'creationDate'>;
 
-export type UpdateCourseType = Omit<Course, 'isFavorite' | 'creationDate'>;
+export type UpdateCourseType = Omit<Course, 'isTopRated' | 'creationDate'>;

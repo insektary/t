@@ -6,10 +6,10 @@ import {By} from '@angular/platform-browser';
 import {BorderGreenDirective} from './border-green.directive';
 
 @Component({
-    template: `<div appBorderGreen [startDate]='startDate'>Test</div>`
+    template: `<div appBorderGreen [date]='date'>Test</div>`
 })
 class AboutComponent {
-    public startDate: string;
+    public date: string;
 }
 
 describe('BorderGreenDirective', () => {
@@ -27,7 +27,7 @@ describe('BorderGreenDirective', () => {
     });
 
     it('should have skyblue border', () => {
-        component.startDate = moment().add(5, 'days').format();
+        component.date = moment().add(5, 'days').format();
         fixture.detectChanges();
         const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
 
@@ -35,7 +35,7 @@ describe('BorderGreenDirective', () => {
     });
 
     it('should have greenyellow border', () => {
-        component.startDate = moment().subtract(5, 'days').format();
+        component.date = moment().subtract(5, 'days').format();
         fixture.detectChanges();
         const el = fixture.debugElement.queryAll(By.directive(BorderGreenDirective));
 
