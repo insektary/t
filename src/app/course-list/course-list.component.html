@@ -4,10 +4,12 @@
         <app-search (startSearch)="setSearchedValue($event)"></app-search>
         <div class="list-content">
             <app-button (onclick)="addCourse()" [title]="'+ Add course'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
-            <div class="empty-paceholder" *ngIf='!this.coursesService.getData() || this.coursesService.getData().length === 0'>No data. Fill free to add new course</div>
-            <div class="courses">
+            <ng-template #empty>
+                <div class="empty-paceholder">No data. Fill free to add new course</div>
+            </ng-template>
+            <div class="courses" *ngIf='courses$ | async else empty'>
                 <app-course
-                    *ngFor="let item of this.coursesService.getData() | filter:(filter$) | orderBy"
+                    *ngFor="let item of courses$ | async | filter:(filter$) | orderBy"
                     (ondelete)="deleteCourse($event)"
                     (onedit)="editCourse($event)"
                     [item]="item"

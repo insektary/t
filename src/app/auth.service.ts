@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEventType} from '@angular/common/http';
+import {HttpClient, HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
 import {LoaderService} from './loader.service';
+import {AppState} from './interfaces/store';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +12,8 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        public loaderService: LoaderService
+        public loaderService: LoaderService,
+        public store: Store<AppState>
     ) { }
 
     subscriber = (onSuccess: (event: any) => void) => (event: any) => {
@@ -35,11 +38,15 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
+    setToken(token: string): void {
+        localStorage.setItem('token', token);
+    }
+
     isAuthenticated(): Observable<object> {
         return this.http.post('api/auth/userInfo', {token: this.getToken()});
     }
 
-    getUserInfo(): Observable<object> {
+    getUserInfo(): Observable<any> {
         return this.http.post('api/auth/userInfo', {token: this.getToken()});
     }
 }

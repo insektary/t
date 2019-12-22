@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
+import {Store, select} from '@ngrx/store';
 import {Location} from '@angular/common';
 import {CoursesService} from '../courses.service';
+import {getEditableCourse} from '../store/selectors/selectors';
+import {AppState} from '../interfaces/store';
 @Component({
     selector: 'app-breadcrumbs',
     templateUrl: './breadcrumbs.component.html',
@@ -12,7 +15,12 @@ export class BreadcrumbsComponent implements OnInit {
     public breadcrumbs: any[];
     public currentUrl: string;
 
-    constructor(private router: Router, public coursesService: CoursesService, public location: Location) {
+    constructor(
+        private router: Router,
+        public coursesService: CoursesService,
+        public location: Location,
+        public store: Store<AppState>
+    ) {
 
         this.currentUrl = location.path();
         this.breadcrumbs = this.currentUrl.split('/').filter(Boolean);
@@ -26,22 +34,27 @@ export class BreadcrumbsComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.store.pipe(select(getEditableCourse))
+            .subscribe(({name}) => this.countBreadcrumbs(name));
     }
 
-    onRouteChange() {
+    countBreadcrumbs(name?: string) {
         const {location} = this;
         const newUrl = location.path();
 
         this.breadcrumbs = newUrl.split('/').filter(Boolean).map((item) => {
             const id = parseInt(item, 10);
 
-            if (!isNaN(id)) {
-                return this.coursesService.getCourseById(id).name;
+            if (!isNaN(id) && name) {
+                return name;
             }
 
             return item;
         });
+    }
+
+    onRouteChange() {
+        this.countBreadcrumbs();
     }
 
 }
