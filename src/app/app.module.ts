@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
@@ -26,6 +28,9 @@ import {CourseViewComponent} from './course-view/course-view.component';
 import {LoaderComponent} from './loader/loader.component';
 import {LoaderInterceptor} from './loader-interceptor';
 import {LoaderService} from './loader.service';
+import {coursesReducer} from './store/reducers/courses';
+import {editableCourseReducer} from './store/reducers/editableCourse';
+import {authDataReducer} from './store/reducers/authData';
 
 const appRoutes: Routes = [
     {
@@ -104,7 +109,15 @@ const appRoutes: Routes = [
             {
                 enableTracing: false
             }
-        )
+        ),
+        StoreModule.forRoot({
+            courses: coursesReducer,
+            editableCourse: editableCourseReducer,
+            authData: authDataReducer
+        }),
+        StoreDevtoolsModule.instrument({
+            maxAge: 5
+        })
     ],
     providers: [
         CoursesService,

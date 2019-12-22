@@ -4,8 +4,8 @@
             <span class="logo-title">VIDEO COURSE</span>
         </div>
         <div class="header-content--name">
-            <span>{{name.first}}</span>
-            <span>{{name.last}}</span>
+            <span>{{(name$ | async)?.first}}</span>
+            <span>{{(name$ |async)?.last}}</span>
         </div>
         <div class="button-container">
             <button (click)="logIn()" class="button header-content__button button--small">User login</button>

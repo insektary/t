@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Store, select} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import {CoursesService} from '../courses.service';
 import {AuthService} from '../auth.service';
 import {LoaderService} from '../loader.service';
+import {getCourses} from '../store/selectors/selectors';
+import {Course} from '../interfaces/course';
+import {AppState} from '../interfaces/store';
 
 @Component({
     selector: 'app-course-list',
@@ -12,18 +17,22 @@ import {LoaderService} from '../loader.service';
 export class CourseListComponent implements OnInit {
 
     public filter$ = '';
+    public courses$: Observable<Course[]>;
 
     constructor(
         public authServise: AuthService,
         public coursesService: CoursesService,
         public loaderService: LoaderService,
-        public router: Router
+        public router: Router,
+        public store: Store<AppState>
     ) {
 
     }
 
     ngOnInit() {
         this.coursesService.fetchData();
+
+        this.courses$ = this.store.pipe(select(getCourses));
     }
 
     deleteCourse(id: number) {
