@@ -37,10 +37,10 @@ export class CoursesService {
 
     subscriber = (onSuccess: (event: any) => void) => (event: any) => {
         if (event.type === HttpEventType.DownloadProgress) {
-            this.loaderService.showLoader();
+            this.loaderService.requestIsStarted();
         }
         if (event.type === HttpEventType.Response) {
-            this.loaderService.hideLoader();
+            this.loaderService.requestIsFinished();
             onSuccess(event);
         }
     }

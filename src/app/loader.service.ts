@@ -5,17 +5,17 @@ import {Injectable} from '@angular/core';
 })
 export class LoaderService {
 
-    isLoading: boolean;
+    requestsCounter: number;
 
     constructor() {
-        this.isLoading = false;
+        this.requestsCounter = 0;
     }
 
-    showLoader() {
-        this.isLoading = true;
+    requestIsStarted() {
+        this.requestsCounter++;
     }
 
-    hideLoader = () => {
-        this.isLoading = false;
+    requestIsFinished() {
+        this.requestsCounter--;
     }
 }

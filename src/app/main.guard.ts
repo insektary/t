@@ -15,11 +15,7 @@ export class MainGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
             return this.auth.isAuthenticated().pipe(map(res => {
-                if (res) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return Boolean(res);
             }), catchError(() => {
                 this.router.navigate(['/auth']);
 

@@ -18,10 +18,10 @@ export class AuthService {
 
     subscriber = (onSuccess: (event: any) => void) => (event: any) => {
         if (event.type === HttpEventType.DownloadProgress) {
-            this.loaderService.showLoader();
+            this.loaderService.requestIsStarted();
         }
         if (event.type === HttpEventType.Response) {
-            this.loaderService.hideLoader();
+            this.loaderService.requestIsFinished();
             onSuccess(event);
         }
     }
@@ -42,8 +42,11 @@ export class AuthService {
         localStorage.setItem('token', token);
     }
 
-    isAuthenticated(): Observable<object> {
-        return this.http.post('api/auth/userInfo', {token: this.getToken()});
+    isAuthenticated(): Observable<string> {
+        return new Observable(subscriber => {
+            subscriber.next(this.getToken());
+            subscriber.complete();
+        });
     }
 
     getUserInfo(): Observable<any> {
