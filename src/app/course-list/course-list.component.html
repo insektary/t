@@ -1,6 +1,6 @@
 <div class="list-container">
-    <app-loader *ngIf="this.loaderService.isLoading"></app-loader>
-    <div *ngIf="!this.loaderService.isLoading">
+    <app-loader *ngIf="this.loaderService.requestsCounter"></app-loader>
+    <div *ngIf="!this.loaderService.requestsCounter">
         <app-search (startSearch)="setSearchedValue($event)"></app-search>
         <div class="list-content">
             <app-button (onclick)="addCourse()" [title]="'+ Add course'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
@@ -14,7 +14,7 @@
                     >
                 </app-course>
                 <div class="add-more-container">
-                    <a href='#'(click)="addCourse()">Add more</a>
+                    <a [routerLink]="" (click)="addMore()">Add more</a>
                 </div>
             </div>
         </div>

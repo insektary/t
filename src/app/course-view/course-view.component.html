@@ -1,6 +1,6 @@
 <div class="course-view-container">
-    <app-loader *ngIf="this.loaderService.isLoading"></app-loader>
-    <div class="course-view-content" *ngIf="!this.loaderService.isLoading">
+    <app-loader *ngIf="this.loaderService.requestsCounter"></app-loader>
+    <div class="course-view-content" *ngIf="!this.loaderService.requestsCounter">
         <div class="course-view-content--title">{{course.name}}</div>
         <div class="course-view-content--description">{{course.description}}</div>
         <div class="course-view-content--startdate">{{course.startDate}}</div>
