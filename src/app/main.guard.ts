@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {map, catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
 
@@ -13,11 +14,12 @@ export class MainGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-            if (this.auth.isAuthenticated()) {
-                return true;
-            }
+            return this.auth.isAuthenticated().pipe(map(res => {
+                return Boolean(res);
+            }), catchError(() => {
+                this.router.navigate(['/auth']);
 
-            this.router.navigate(['/auth']);
-            return false;
+                return of(false);
+            }));
     }
 }

@@ -1,25 +1,20 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEventType} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {LoaderService} from './loader.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        public loaderService: LoaderService
+    ) { }
 
-    logIn(login: string, password: string): Promise<any> {
-        return new Promise((res, rej) => {
-            this.http.post('api/auth/login', {login, password})
-                .subscribe((data: {token?: string}) => {
-                    if (data && data.token) {
-                        localStorage.setItem('token', data.token);
-                        res();
-                    } else {
-                        rej();
-                    }
-                }, () => rej());
-        });
+    logIn(login: string, password: string): Observable<any> {
+        return this.http.post('api/auth/login', {login, password}, {reportProgress: true});
     }
 
     logOut(): void {
@@ -30,14 +25,18 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
-    isAuthenticated(): boolean {
-        return Boolean(this.getToken());
+    setToken(token: string): void {
+        localStorage.setItem('token', token);
     }
 
-    getUserInfo(): Promise<object> {
-        return new Promise((res, rej) => {
-            this.http.post('api/auth/userInfo', {token: this.getToken()})
-                .subscribe((data) => res(data));
+    isAuthenticated(): Observable<string> {
+        return new Observable(subscriber => {
+            subscriber.next(this.getToken());
+            subscriber.complete();
         });
+    }
+
+    getUserInfo(): Observable<object> {
+        return this.http.post('api/auth/userInfo', {token: this.getToken()});
     }
 }

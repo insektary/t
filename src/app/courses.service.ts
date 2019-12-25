@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import {Course, CreateCourseType, UpdateCourseType} from 'src/app/interfaces/course';
+import {LoaderService} from './loader.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +13,7 @@ export class CoursesService {
     public editableCourse: Course;
     public count: number;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, public loaderService: LoaderService) {
         this.courseList = [];
         this.count = 10;
     }
@@ -33,7 +35,7 @@ export class CoursesService {
     }
 
     fetchData(textFragment: string = '') {
-        this.http.get(`api/courses?count=${this.count || ''}&textFragment=${textFragment}`)
+        this.http.get(`api/courses?textFragment=${textFragment}`, {reportProgress: true})
             .subscribe((data: Course[]) => this.courseList = data);
     }
 
@@ -41,17 +43,8 @@ export class CoursesService {
         return this.courseList;
     }
 
-    fetchCourseById(id: number): Promise<Course> {
-        return new Promise((res, rej) => {
-            this.http.get(`api/courses/${id}`).subscribe((data: Course) => {
-                if (data && data.length) {
-                    this.editableCourse = data;
-                    res(data);
-                } else {
-                    rej();
-                }
-            });
-        });
+    fetchCourseById(id: number): Observable<any> {
+        return this.http.get(`api/courses/${id}`, {reportProgress: true});
     }
 
     getCourseById(foundedId: number): Course {
