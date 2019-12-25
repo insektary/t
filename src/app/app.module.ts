@@ -26,11 +26,11 @@ import {TokenInterceptor} from './token-interceptor';
 import {MainGuard} from './main.guard';
 import {CourseViewComponent} from './course-view/course-view.component';
 import {LoaderComponent} from './loader/loader.component';
-import {LoaderInterceptor} from './loader-interceptor';
-import {LoaderService} from './loader.service';
 import {coursesReducer} from './store/reducers/courses';
 import {editableCourseReducer} from './store/reducers/editableCourse';
 import {authDataReducer} from './store/reducers/authData';
+import {LoaderInterceptor} from './loader-interceptor';
+import {LoaderService} from './loader.service';
 
 const appRoutes: Routes = [
     {
