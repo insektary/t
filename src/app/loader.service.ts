@@ -18,4 +18,8 @@ export class LoaderService {
     requestIsFinished() {
         this.requestsCounter--;
     }
+
+    get showLoader() {
+        return this.requestsCounter;
+    }
 }

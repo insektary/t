@@ -33,7 +33,7 @@ export class CourseViewComponent implements OnInit {
 
     ngOnInit() {
         this.coursesService.fetchCourseById(Number(this.routeId))
-            .subscribe(this.coursesService.subscriber((event) => this.course = event.body));
+            .subscribe((data) => this.course = data);
     }
 
 }

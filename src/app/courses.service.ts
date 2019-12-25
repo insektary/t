@@ -34,19 +34,9 @@ export class CoursesService {
         return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
 
-    subscriber = (onSuccess: (event: any) => void) => (event: any) => {
-        if (event.type === HttpEventType.DownloadProgress) {
-            this.loaderService.requestIsStarted();
-        }
-        if (event.type === HttpEventType.Response) {
-            this.loaderService.requestIsFinished();
-            onSuccess(event);
-        }
-    }
-
     fetchData(textFragment: string = '') {
-        this.http.get(`api/courses?textFragment=${textFragment}`, {reportProgress: true, observe: 'events'})
-            .subscribe(this.subscriber((event) => this.courseList = event.body));
+        this.http.get(`api/courses?textFragment=${textFragment}`, {reportProgress: true})
+            .subscribe((data: Course[]) => this.courseList = data);
     }
 
     getData(): Course[] {
@@ -54,7 +44,7 @@ export class CoursesService {
     }
 
     fetchCourseById(id: number): Observable<any> {
-        return this.http.get(`api/courses/${id}`, {reportProgress: true, observe: 'events'});
+        return this.http.get(`api/courses/${id}`, {reportProgress: true});
     }
 
     getCourseById(foundedId: number): Course {
