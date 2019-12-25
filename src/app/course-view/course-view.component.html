@@ -1,9 +1,9 @@
 <div class="course-view-container">
-    <app-loader *ngIf="this.loaderService.requestsCounter"></app-loader>
-    <div class="course-view-content" *ngIf="!this.loaderService.requestsCounter">
-        <div class="course-view-content--title">{{course.name}}</div>
-        <div class="course-view-content--description">{{course.description}}</div>
-        <div class="course-view-content--startdate">{{course.startDate}}</div>
-        <div class="course-view-content--duration">{{course.length | durationFormatter}}</div>
+    <app-loader *ngIf="this.loaderService.showLoader"></app-loader>
+    <div class="course-view-content" *ngIf="!this.loaderService.showLoader">
+        <div class="course-view-content--title">{{(course$ | async)?.name}}</div>
+        <div class="course-view-content--description">{{(course$ | async)?.description}}</div>
+        <div class="course-view-content--startdate">{{(course$ | async)?.startDate}}</div>
+        <div class="course-view-content--duration">{{(course$ | async)?.length | durationFormatter}}</div>
     </div>
 </div>

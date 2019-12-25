@@ -48,7 +48,7 @@ export class AddCourseComponent implements OnInit {
         }
 
         this.coursesService.fetchCourseById(Number(this.routeId));
-        this.store.pipe(select(getEditableCourse)).subscribe((data) => this.formValues = data);
+        this.store.pipe(select(getEditableCourse)).subscribe((data) => this.formValues = data, () => this.router.navigate(['/404']));
     }
 
     onCancel() {
