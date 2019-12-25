@@ -16,18 +16,8 @@ export class AuthService {
         public store: Store<AppState>
     ) { }
 
-    subscriber = (onSuccess: (event: any) => void) => (event: any) => {
-        if (event.type === HttpEventType.DownloadProgress) {
-            this.loaderService.requestIsStarted();
-        }
-        if (event.type === HttpEventType.Response) {
-            this.loaderService.requestIsFinished();
-            onSuccess(event);
-        }
-    }
-
     logIn(login: string, password: string): Observable<any> {
-        return this.http.post('api/auth/login', {login, password}, {reportProgress: true, observe: 'events'});
+        return this.http.post('api/auth/login', {login, password}, {reportProgress: true});
     }
 
     logOut(): void {

@@ -29,6 +29,8 @@ import {LoaderComponent} from './loader/loader.component';
 import {coursesReducer} from './store/reducers/courses';
 import {editableCourseReducer} from './store/reducers/editableCourse';
 import {authDataReducer} from './store/reducers/authData';
+import {LoaderInterceptor} from './loader-interceptor';
+import {LoaderService} from './loader.service';
 
 const appRoutes: Routes = [
     {
@@ -119,10 +121,16 @@ const appRoutes: Routes = [
     ],
     providers: [
         CoursesService,
+        LoaderService,
         MainGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
             multi: true
         }
     ],

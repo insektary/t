@@ -35,28 +35,18 @@ export class CoursesService {
         return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
 
-    subscriber = (onSuccess: (event: any) => void) => (event: any) => {
-        if (event.type === HttpEventType.DownloadProgress) {
-            this.loaderService.requestIsStarted();
-        }
-        if (event.type === HttpEventType.Response) {
-            this.loaderService.requestIsFinished();
-            onSuccess(event);
-        }
-    }
-
     fetchData(textFragment: string = ''): void {
-        this.http.get(`api/courses?textFragment=${textFragment}`, {reportProgress: true, observe: 'events'})
-            .subscribe(this.subscriber((event) => {
-                this.store.dispatch(putCoursesToStore({payload: event.body}));
-            }));
+        this.http.get(`api/courses?textFragment=${textFragment}`, {reportProgress: true})
+            .subscribe((data: Course[]) => {
+                this.store.dispatch(putCoursesToStore({payload: data}));
+            });
     }
 
     fetchCourseById(id: number): void {
-        this.http.get(`api/courses/${id}`, {reportProgress: true, observe: 'events'})
-            .subscribe(this.subscriber((event) => {
-                this.store.dispatch(setEditableCourse({payload: event.body}));
-            }));
+        this.http.get(`api/courses/${id}`, {reportProgress: true})
+            .subscribe((data: Course) => {
+                this.store.dispatch(setEditableCourse({payload: data}));
+            });
     }
 
     deleteCourse(id: number): Promise<void> {

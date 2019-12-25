@@ -23,10 +23,10 @@ export class AuthPageComponent implements OnInit {
 
     logIn() {
         this.authService.logIn(this.login, this.password)
-            .subscribe(this.authService.subscriber(({body: {token}}) => {
+            .subscribe(({token}) => {
                 this.authService.setToken(token);
                 this.router.navigate(['/courses']);
-            }), () => console.log('error'));
+            }), () => console.log('error');
     }
 
 }
