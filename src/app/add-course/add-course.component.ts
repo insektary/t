@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Store, select} from '@ngrx/store';
 import {CoursesService} from '../courses.service';
 import {LoaderService} from '../loader.service';
+import {getEditableCourse} from '../store/selectors/selectors';
+import {Course} from '../interfaces/course';
+import {AppState} from '../interfaces/store';
 
 interface FormValuesType {
     name: string;
@@ -18,7 +22,10 @@ interface FormValuesType {
 export class AddCourseComponent implements OnInit {
 
     public routeId?: string;
-    public formValues: FormValuesType = {
+    public formValues: Course = {
+        id: null,
+        isTopRated: false,
+        creationDate: '',
         name: '',
         description: '',
         date: '',
@@ -29,7 +36,8 @@ export class AddCourseComponent implements OnInit {
         public route: ActivatedRoute,
         public router: Router,
         public coursesService: CoursesService,
-        public loaderService: LoaderService
+        public loaderService: LoaderService,
+        public store: Store<AppState>
     ) {
         this.routeId = route.snapshot.paramMap.get('id');
     }
@@ -39,8 +47,8 @@ export class AddCourseComponent implements OnInit {
             return;
         }
 
-        this.coursesService.fetchCourseById(Number(this.routeId))
-            .subscribe((data) => this.formValues = data), () => this.router.navigate(['/404']);
+        this.coursesService.fetchCourseById(Number(this.routeId));
+        this.store.pipe(select(getEditableCourse)).subscribe((data) => this.formValues = data, () => this.router.navigate(['/404']));
     }
 
     onCancel() {

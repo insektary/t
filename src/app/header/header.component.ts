@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import {AuthService} from '../auth.service';
-
-interface NameType {
-    first: string;
-    last: string;
-}
+import {Store, select} from '@ngrx/store';
+import {setAuthData} from '../store/actions/authData';
+import {UserName} from '../interfaces/authData';
+import {getAuthData} from '../store/selectors/selectors';
+import {AppState} from '../interfaces/store';
 
 @Component({
     selector: 'app-header',
@@ -15,21 +16,18 @@ interface NameType {
 })
 export class HeaderComponent implements OnInit {
 
-    name: NameType;
+    name$: Observable<UserName>;
 
     constructor(
         private authService: AuthService,
-        public router: Router
-    ) {
-        this.name = {
-            first: '',
-            last: ''
-        };
-    }
+        public router: Router,
+        public store: Store<AppState>
+    ) {}
 
     ngOnInit() {
         this.authService.getUserInfo()
-            .subscribe((data: {name: NameType}) => this.name = data.name);
+            .subscribe(({name}) => this.store.dispatch(setAuthData({payload: name})));
+        this.name$ = this.store.pipe(select(getAuthData));
     }
 
     logIn() {
