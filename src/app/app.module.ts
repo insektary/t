@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -31,6 +33,8 @@ import {editableCourseReducer} from './store/reducers/editableCourse';
 import {authDataReducer} from './store/reducers/authData';
 import {LoaderInterceptor} from './loader-interceptor';
 import {LoaderService} from './loader.service';
+import {FormInputComponent} from './form-input/form-input.component';
+import {DateFormInputComponent} from './date-form-input/date-form-input.component';
 
 const appRoutes: Routes = [
     {
@@ -99,11 +103,15 @@ const appRoutes: Routes = [
         TextareaComponent,
         PageNotFoundComponent,
         CourseViewComponent,
-        LoaderComponent
+        LoaderComponent,
+        FormInputComponent,
+        DateFormInputComponent
     ],
     imports: [
+        FormsModule,
         BrowserModule,
         HttpClientModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(
             appRoutes,
             {

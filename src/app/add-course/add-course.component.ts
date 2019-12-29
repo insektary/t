@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Store, select} from '@ngrx/store';
 import {CoursesService} from '../courses.service';
 import {LoaderService} from '../loader.service';
 import {getEditableCourse} from '../store/selectors/selectors';
-import {Course} from '../interfaces/course';
 import {AppState} from '../interfaces/store';
+import * as moment from 'moment';
 
 interface FormValuesType {
     name: string;
@@ -22,33 +23,67 @@ interface FormValuesType {
 export class AddCourseComponent implements OnInit {
 
     public routeId?: string;
-    public formValues: Course = {
-        id: null,
-        isTopRated: false,
-        creationDate: '',
-        name: '',
-        description: '',
-        date: '',
-        length: null
-    };
+    public form: FormGroup;
 
     constructor(
         public route: ActivatedRoute,
         public router: Router,
         public coursesService: CoursesService,
         public loaderService: LoaderService,
-        public store: Store<AppState>
+        public store: Store<AppState>,
+        private fb: FormBuilder
     ) {
         this.routeId = route.snapshot.paramMap.get('id');
     }
 
     ngOnInit() {
+        this.initForm();
         if (!this.routeId) {
             return;
         }
 
         this.coursesService.fetchCourseById(Number(this.routeId));
-        this.store.pipe(select(getEditableCourse)).subscribe((data) => this.formValues = data, () => this.router.navigate(['/404']));
+        this.store.pipe(select(getEditableCourse)).subscribe((data) => this.initForm(data), () => this.router.navigate(['/404']));
+    }
+
+    initForm(values?: FormValuesType) {
+        this.form = this.fb.group({
+            name: [
+                values ? values.name : '',
+                [
+                    Validators.required,
+                    Validators.maxLength(50)
+                ]
+            ],
+            description: [
+                values ? values.description : '',
+                [
+                    Validators.required,
+                    Validators.maxLength(500)
+                ]
+            ],
+            date: [
+                values ? values.date : '',
+                [
+                    Validators.required,
+                    ({value}: {value: string}) => {
+                        if (moment(value).isValid()) {
+                            return null;
+                        }
+
+                        return {
+                            error: true
+                        };
+                    }
+                ]
+            ],
+            length: [
+                values ? values.length : null,
+                [
+                    Validators.required
+                ]
+            ],
+        });
     }
 
     onCancel() {
@@ -57,10 +92,10 @@ export class AddCourseComponent implements OnInit {
 
     onSubmit() {
         if (!this.routeId) {
-            this.coursesService.createCourse(this.formValues)
+            this.coursesService.createCourse(this.form.value)
                 .then(() => this.router.navigate(['/courses']));
         } else {
-            this.coursesService.updateCourse({...this.formValues, id: Number(this.routeId)})
+            this.coursesService.updateCourse({...this.form.value, id: Number(this.routeId)})
                 .then(() => this.router.navigate(['/courses']));
         }
     }

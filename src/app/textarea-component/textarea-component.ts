@@ -1,23 +1,20 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {FormGroup} from '@angular/forms';
 
 @Component({
-    selector: 'app-textarea',
+    selector: 'app-form-textarea',
     templateUrl: './textarea-component.html',
     styleUrls: ['./textarea-component.less']
 })
 export class TextareaComponent implements OnInit {
 
-    @Input() public value: string;
-    @Output() public valueChange: EventEmitter<string> = new EventEmitter();
+    @Input() public form: FormGroup;
+    @Input() public name: string;
 
     constructor() {
 
     }
 
     ngOnInit() {
-    }
-
-    updateValue(value: string) {
-        this.valueChange.emit(value);
     }
 }

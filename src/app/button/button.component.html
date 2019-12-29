@@ -1,9 +1,10 @@
 <div class="button-container">
-    <button (click)="handleClick()" class="button" [ngClass]="{
+    <button (click)="handleClick()" class="button" [disabled]='disabled' [ngClass]="{
         'button--green': color === 'GREEN',
         'button--blue': color === 'BLUE',
         'button--big': size === 'BIG',
         'button--medium': size === 'MEDIUM',
-        'button--small': size === 'SMALL'
+        'button--small': size === 'SMALL',
+        'button--disabled': disabled
     }" >{{title}}</button>
 </div>

@@ -1,0 +1,7 @@
+<div class="input-container" [ngClass]="{'input-container--error': isError}">
+    <input
+        [(ngModel)]="value"
+        (ngModelChange)="updateValue($event)"
+        class="input-field"
+    />
+</div>

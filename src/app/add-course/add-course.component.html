@@ -1,28 +1,30 @@
 <div class="add-course-container">
     <app-loader *ngIf="this.loaderService.showLoader"></app-loader>
     <div class="add-course-content" *ngIf="!this.loaderService.showLoader">
-        <div class="form-section">
-            <label for="name">Title</label>
-            <app-input [(value)]="formValues.name" [isLong]="true" ></app-input>
-        </div>
-        <div class="form-section">
-            <label for="description">Description</label>
-            <app-textarea [(value)]="formValues.description"></app-textarea>
-        </div>
-        <div class="form-section form-section--short">
-            <label for="date">Date</label>
-            <app-input [(value)]="formValues.date" ></app-input>
-        </div>
-        <div class="form-section form-section--short">
-            <label for="length">Duration</label>
-            <div class="form-section-row">
-                <app-input [(value)]="formValues.length" [type]="'number'" ></app-input>
-                <span>{{formValues.length | durationFormatter}}</span>
+        <form [formGroup]="form" (submit)="onSubmit()">
+            <div class="form-section">
+                <label for="name">Title</label>
+                <app-form-input [form]="form" [name]="'name'"></app-form-input>
             </div>
-        </div>
-        <div class="button-block">
-            <app-button (onclick)="onSubmit()" [title]="'Save'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
-            <app-button (onclick)="onCancel()" [title]="'Cancel'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
-        </div>
+            <div class="form-section">
+                <label for="description">Description</label>
+                <app-form-textarea [form]="form" [name]="'description'"></app-form-textarea>
+            </div>
+            <div class="form-section form-section--short">
+                <label for="date">Date</label>
+                <app-date-form-input id="date" formControlName="date" [isError]="form.controls.date.invalid && form.controls.date.touched"></app-date-form-input>
+            </div>
+            <div class="form-section form-section--short">
+                <label for="length">Duration</label>
+                <div class="form-section-row">
+                    <app-form-input [form]="form" [type]="'number'" [name]="'length'"></app-form-input>
+                    <span>{{form.value.length | durationFormatter}}</span>
+                </div>
+            </div>
+            <div class="button-block">
+                <app-button type="submit" [disabled]="form.status === 'INVALID'" [title]="'Save'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+                <app-button (onclick)="onCancel()" [title]="'Cancel'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+            </div>
+        </form>
     </div>
 </div>

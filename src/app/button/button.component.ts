@@ -14,6 +14,7 @@ export class ButtonComponent implements OnInit {
     @Input() public title: string;
     @Input() public size: Sizes;
     @Input() public color: Colors;
+    @Input() public disabled = false;
     @Output() public onclick: EventEmitter<void> = new EventEmitter();
 
     constructor() { }

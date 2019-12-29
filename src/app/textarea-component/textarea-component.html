@@ -1,3 +1,3 @@
-<div class="textarea-container">
-    <textarea class="textarea-field" #inputElement [value]="value" (input)="updateValue(inputElement.value)"></textarea>
+<div class="textarea-container" [formGroup]="form" [ngClass]="{'input-container--long': isLong}">
+    <textarea class="textarea-field" [id]="name" [formControlName]="name" [ngClass]="{'textarea-field--error': form.controls[name].invalid && form.controls[name].touched}"></textarea>
 </div>

@@ -1,0 +1,9 @@
+<div [formGroup]="form" class="input-container" [ngClass]="{'input-container--long': isLong, 'input-container--error': form.controls[name].invalid && form.controls[name].touched}">
+    <input
+        [type]="type"
+        [id]="name"
+        [formControlName]="name"
+        class="input-field"
+        [ngClass]="{'input-field--long': isLong}"
+    />
+</div>
