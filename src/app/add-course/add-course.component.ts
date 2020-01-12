@@ -6,6 +6,7 @@ import {CoursesService} from '../courses.service';
 import {LoaderService} from '../loader.service';
 import {getEditableCourse} from '../store/selectors/selectors';
 import {AppState} from '../interfaces/store';
+import {AuthorType} from '../interfaces/course';
 import * as moment from 'moment';
 
 interface FormValuesType {
@@ -13,6 +14,7 @@ interface FormValuesType {
     description: string;
     date: string;
     length: number;
+    authors: AuthorType[];
 }
 
 @Component({
@@ -80,9 +82,32 @@ export class AddCourseComponent implements OnInit {
             length: [
                 values ? values.length : null,
                 [
-                    Validators.required
+                    Validators.required,
+                    ({value}: {value: string}) => {
+                        if (!isNaN(Number(value))) {
+                            return null;
+                        }
+
+                        return {
+                            error: true
+                        };
+                    }
                 ]
             ],
+            authors: [
+                values ? values.authors : [],
+                [
+                    ({value}: {value: AuthorType[]}) => {
+                        if (value && value.length) {
+                            return null;
+                        }
+
+                        return {
+                            error: true
+                        };
+                    }
+                ]
+            ]
         });
     }
 

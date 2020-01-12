@@ -16,10 +16,11 @@
             </div>
             <div class="form-section form-section--short">
                 <label for="length">Duration</label>
-                <div class="form-section-row">
-                    <app-form-input [form]="form" [type]="'number'" [name]="'length'"></app-form-input>
-                    <span>{{form.value.length | durationFormatter}}</span>
-                </div>
+                <app-duration-form-input id="length" formControlName="length" [isError]="form.controls.length.invalid && form.controls.length.touched"></app-duration-form-input>
+            </div>
+            <div class="form-section form-section--short">
+                <label for="authors">Authors</label>
+                <app-authors-form-input id="authors" formControlName="authors" [isError]="form.controls.authors.invalid && form.controls.authors.touched"></app-authors-form-input>
             </div>
             <div class="button-block">
                 <app-button type="submit" [disabled]="form.status === 'INVALID'" [title]="'Save'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>

@@ -11,7 +11,6 @@ import {AppState} from './interfaces/store';
 })
 export class CoursesService {
 
-    public courseList: Course[];
     public editableCourse: Course;
     public count: number;
 
@@ -25,14 +24,6 @@ export class CoursesService {
 
     resetCount() {
         this.count = 10;
-    }
-
-    generateId(): number {
-        if (!this.courseList || this.courseList.length === 0) {
-            return 1;
-        }
-
-        return (Math.max(...this.courseList.map(({id}) => id)) + 1);
     }
 
     fetchData(textFragment: string = ''): void {

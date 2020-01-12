@@ -5,5 +5,8 @@
         <div class="course-view-content--description">{{(course$ | async)?.description}}</div>
         <div class="course-view-content--startdate">{{(course$ | async)?.startDate}}</div>
         <div class="course-view-content--duration">{{(course$ | async)?.length | durationFormatter}}</div>
+        <div class="course-view-content--authors">
+            <span *ngFor="let item of (course$ | async).authors">{{item.name}} {{item.lastName}}</span>
+        </div>
     </div>
 </div>

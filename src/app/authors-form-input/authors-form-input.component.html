@@ -1,0 +1,10 @@
+<div class="input-container">
+    <div class="author-item" *ngFor="let item of value">
+        <div>{{item.name}} {{item.lastName}}</div>
+        <div class='author-item__remove' [id]="item.id" (click)="removeAuthor($event)">✖</div>
+    </div>
+    <div class="author-item__open" (click)="openList()">&#10133;</div>
+</div>
+<div class="authors-list" *ngIf="listIsOpened">
+    <div *ngFor="let item of authors$ | async" [id]="item.id" (click)="addAuthor($event)">{{item.name}} {{item.lastName}}</div>
+</div>

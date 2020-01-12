@@ -1,4 +1,4 @@
-import {Course as CourseInterface} from 'src/app/interfaces/course';
+import {Course as CourseInterface, AuthorType} from 'src/app/interfaces/course';
 
 export class Course implements CourseInterface {
     public id: number;
@@ -8,6 +8,7 @@ export class Course implements CourseInterface {
     public length: number;
     public date: string;
     public description: string;
+    public authors: AuthorType[];
 
     constructor({
         id,
@@ -15,7 +16,8 @@ export class Course implements CourseInterface {
         isTopRated,
         creationDate,
         length,
-        description
+        description,
+        authors
     }: CourseInterface) {
         this.id = id;
         this.name = name;
@@ -24,5 +26,6 @@ export class Course implements CourseInterface {
         this.length = length;
         this.date = this.date;
         this.description = description;
+        this.authors = authors;
     }
 }

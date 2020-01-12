@@ -1,3 +1,9 @@
+export interface AuthorType {
+    id: number;
+    name: string;
+    lastName: string;
+}
+
 export interface Course {
     id: number;
     name: string;
@@ -6,6 +12,7 @@ export interface Course {
     length: number;
     date: string;
     description: string;
+    authors: AuthorType[];
 }
 
 export type CreateCourseType = Omit<Course, 'id' | 'isTopRated' | 'creationDate'>;

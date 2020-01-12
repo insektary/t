@@ -24,17 +24,21 @@ import {AddCourseComponent} from './add-course/add-course.component';
 import {TextareaComponent} from './textarea-component/textarea-component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CoursesService} from './courses.service';
+import {AuthorsService} from './authors.service';
 import {TokenInterceptor} from './token-interceptor';
 import {MainGuard} from './main.guard';
 import {CourseViewComponent} from './course-view/course-view.component';
 import {LoaderComponent} from './loader/loader.component';
 import {coursesReducer} from './store/reducers/courses';
+import {authorsReducer} from './store/reducers/authors';
 import {editableCourseReducer} from './store/reducers/editableCourse';
 import {authDataReducer} from './store/reducers/authData';
 import {LoaderInterceptor} from './loader-interceptor';
 import {LoaderService} from './loader.service';
 import {FormInputComponent} from './form-input/form-input.component';
 import {DateFormInputComponent} from './date-form-input/date-form-input.component';
+import {DurationFormInputComponent} from './duration-form-input/duration-form-input.component';
+import {AuthorsFormInputComponent} from './authors-form-input/authors-form-input.component';
 
 const appRoutes: Routes = [
     {
@@ -105,7 +109,9 @@ const appRoutes: Routes = [
         CourseViewComponent,
         LoaderComponent,
         FormInputComponent,
-        DateFormInputComponent
+        DateFormInputComponent,
+        DurationFormInputComponent,
+        AuthorsFormInputComponent
     ],
     imports: [
         FormsModule,
@@ -120,6 +126,7 @@ const appRoutes: Routes = [
         ),
         StoreModule.forRoot({
             courses: coursesReducer,
+            authors: authorsReducer,
             editableCourse: editableCourseReducer,
             authData: authDataReducer
         }),
@@ -129,6 +136,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         CoursesService,
+        AuthorsService,
         LoaderService,
         MainGuard,
         {

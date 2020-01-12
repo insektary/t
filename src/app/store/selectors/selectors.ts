@@ -8,6 +8,13 @@ export const getCourses = createSelector(
     (courses) => courses
 );
 
+const _getAuthors = (state: AppState) => state.authors;
+
+export const getAuthors = createSelector(
+    _getAuthors,
+    (authors) => authors
+);
+
 const _getEditableCourse = (state: AppState) => state.editableCourse;
 
 export const getEditableCourse = createSelector(
