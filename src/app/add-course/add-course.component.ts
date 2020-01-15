@@ -74,7 +74,7 @@ export class AddCourseComponent implements OnInit {
                         }
 
                         return {
-                            error: true
+                            invalidPattern: true
                         };
                     }
                 ]
@@ -89,7 +89,7 @@ export class AddCourseComponent implements OnInit {
                         }
 
                         return {
-                            error: true
+                            invalidPattern: true
                         };
                     }
                 ]
@@ -103,7 +103,7 @@ export class AddCourseComponent implements OnInit {
                         }
 
                         return {
-                            error: true
+                            isEmpty: true
                         };
                     }
                 ]

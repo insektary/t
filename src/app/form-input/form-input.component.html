@@ -1,3 +1,10 @@
+<div
+    class="input-error-label"
+    [ngClass]="{'input-error-label--hidden': !(form.controls[name].errors && form.controls[name].touched)}"
+>{{form.controls[name].errors && (
+    (form.controls[name].errors.required && 'Поле не заполнено') ||
+    (form.controls[name].errors.maxlength && 'Первышено максимальное количество символов')
+)}}</div>
 <div [formGroup]="form" class="input-container" [ngClass]="{'input-container--long': isLong, 'input-container--error': form.controls[name].invalid && form.controls[name].touched}">
     <input
         [type]="type"
