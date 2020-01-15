@@ -39,6 +39,7 @@ import {FormInputComponent} from './form-input/form-input.component';
 import {DateFormInputComponent} from './date-form-input/date-form-input.component';
 import {DurationFormInputComponent} from './duration-form-input/duration-form-input.component';
 import {AuthorsFormInputComponent} from './authors-form-input/authors-form-input.component';
+import { FilterAuthorsPipe } from './filter-authors.pipe';
 
 const appRoutes: Routes = [
     {
@@ -111,7 +112,8 @@ const appRoutes: Routes = [
         FormInputComponent,
         DateFormInputComponent,
         DurationFormInputComponent,
-        AuthorsFormInputComponent
+        AuthorsFormInputComponent,
+        FilterAuthorsPipe
     ],
     imports: [
         FormsModule,

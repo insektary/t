@@ -23,6 +23,7 @@ export class AuthorsFormInputComponent implements OnInit {
 
     @Input() public name: string;
     @Input() public controls = {};
+    public foundedValue = '';
     public authors$: Observable<AuthorType[]>;
     public authors: AuthorType[];
     listIsOpened = false;
@@ -54,6 +55,7 @@ export class AuthorsFormInputComponent implements OnInit {
         this.onChange(this.value);
         this.onTouched();
         this.listIsOpened = false;
+        this.foundedValue = '';
     }
 
     openList = () => {
