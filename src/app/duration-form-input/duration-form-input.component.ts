@@ -15,7 +15,6 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 })
 export class DurationFormInputComponent implements OnInit {
 
-    @Input() public name: string;
     @Input() public formControl = {};
     value = '';
 
