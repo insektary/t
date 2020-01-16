@@ -17,7 +17,7 @@ import * as moment from 'moment';
 export class DateFormInputComponent implements OnInit, ControlValueAccessor {
 
     @Input() public name: string;
-    @Input() public controls = {};
+    @Input() public formControl = {};
     value = '';
 
     constructor() { }

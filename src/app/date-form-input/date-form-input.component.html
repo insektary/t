@@ -1,11 +1,11 @@
 <div
     class="input-error-label"
-    [ngClass]="{'input-error-label--hidden': !(controls.errors && controls.touched)}"
->{{controls.errors && (
-    (controls.errors.required && 'Поле не заполнено') ||
-    (controls.errors.invalidPattern && 'Неверно введена дата')
+    [ngClass]="{'input-error-label--hidden': !(formControl.errors && formControl.touched)}"
+>{{formControl.errors && (
+    (formControl.errors.required && 'Поле не заполнено') ||
+    (formControl.errors.invalidPattern && 'Неверно введена дата')
 )}}</div>
-<div class="input-container" [ngClass]="{'input-container--error': controls.invalid && controls.touched}">
+<div class="input-container" [ngClass]="{'input-container--error': formControl.invalid && formControl.touched}">
     <input
         [(ngModel)]="value"
         (ngModelChange)="updateValue($event)"

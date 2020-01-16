@@ -12,15 +12,15 @@
             </div>
             <div class="form-section form-section--short">
                 <label for="date">Date</label>
-                <app-date-form-input id="date" formControlName="date" [controls]="form.controls.date"></app-date-form-input>
+                <app-date-form-input [formControl]="form.controls.date"></app-date-form-input>
             </div>
             <div class="form-section form-section--short">
                 <label for="length">Duration</label>
-                <app-duration-form-input id="length" formControlName="length" [controls]="form.controls.length"></app-duration-form-input>
+                <app-duration-form-input [formControl]="form.controls.length"></app-duration-form-input>
             </div>
             <div class="form-section form-section--short">
                 <label for="authors">Authors</label>
-                <app-authors-form-input id="authors" formControlName="authors" [controls]="form.controls.authors"></app-authors-form-input>
+                <app-authors-form-input [formControl]="form.controls.authors"></app-authors-form-input>
             </div>
             <div class="button-block">
                 <app-button type="submit" [disabled]="form.status === 'INVALID'" [title]="'Save'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>

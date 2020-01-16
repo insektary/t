@@ -1,10 +1,10 @@
 <div
     class="input-error-label"
-    [ngClass]="{'input-error-label--hidden': !(controls.errors && controls.touched)}"
->{{controls.errors && (
-    (controls.errors.isEmpty && 'Не выбрано ни одного автора')
+    [ngClass]="{'input-error-label--hidden': !(formControl.errors && formControl.touched)}"
+>{{formControl.errors && (
+    (formControl.errors.isEmpty && 'Не выбрано ни одного автора')
 )}}</div>
-<div class="input-container" [ngClass]="{'input-container--error': controls.invalid && controls.touched}">
+<div class="input-container" [ngClass]="{'input-container--error': formControl.invalid && formControl.touched}">
     <div class="author-item" *ngFor="let item of value">
         <div>{{item.name}} {{item.lastName}}</div>
         <div class='author-item__remove' [id]="item.id" (click)="removeAuthor($event)">✖</div>

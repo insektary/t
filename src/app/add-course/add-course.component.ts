@@ -7,6 +7,7 @@ import {LoaderService} from '../loader.service';
 import {getEditableCourse} from '../store/selectors/selectors';
 import {AppState} from '../interfaces/store';
 import {AuthorType} from '../interfaces/course';
+import {LengthValidator} from '../length-validator';
 import * as moment from 'moment';
 
 interface FormValuesType {
@@ -54,14 +55,14 @@ export class AddCourseComponent implements OnInit {
                 values ? values.name : '',
                 [
                     Validators.required,
-                    Validators.maxLength(50)
+                    LengthValidator.validateLength(50)
                 ]
             ],
             description: [
                 values ? values.description : '',
                 [
                     Validators.required,
-                    Validators.maxLength(500)
+                    LengthValidator.validateLength(500)
                 ]
             ],
             date: [

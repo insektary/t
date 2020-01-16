@@ -22,7 +22,7 @@ import {AppState} from '../interfaces/store';
 export class AuthorsFormInputComponent implements OnInit {
 
     @Input() public name: string;
-    @Input() public controls = {};
+    @Input() public formControl = {};
     public foundedValue = '';
     public authors$: Observable<AuthorType[]>;
     public authors: AuthorType[];
