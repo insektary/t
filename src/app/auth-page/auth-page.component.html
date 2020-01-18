@@ -1,12 +1,12 @@
 <div class="auth-container">
     <div class="auth-content">
-        <h2>Login</h2>
-        <p>Login</p>
-        <app-input [placeholder]="'Login'" [(value)]="login" ></app-input>
-        <p>Password</p>
-        <app-input [placeholder]="'Password'" [(value)]="password" ></app-input>
+        <h2>{{"auth.login" | translate}}</h2>
+        <p>{{"auth.login" | translate}}</p>
+        <app-input [placeholder]="'auth.login' | translate" [(value)]="login" ></app-input>
+        <p>{{"auth.password" | translate}}</p>
+        <app-input [placeholder]="'auth.password' | translate" [(value)]="password" ></app-input>
         <p>
-            <app-button (onclick)="logIn()" [title]="'Login'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+            <app-button (onclick)="logIn()" [title]="'auth.sign-in' | translate" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
         </p>
     </div>
 </div>

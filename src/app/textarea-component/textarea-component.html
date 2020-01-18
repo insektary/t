@@ -2,8 +2,8 @@
     class="input-error-label"
     [ngClass]="{'input-error-label--hidden': !(form.controls[name].errors && form.controls[name].touched)}"
 >{{form.controls[name].errors && (
-    (form.controls[name].errors.required && 'Поле не заполнено') ||
-    (form.controls[name].errors.maxlength && 'Первышено максимальное количество символов')
+    (form.controls[name].errors.required && 'tooltips.empty-field' | translate) ||
+    (form.controls[name].errors.maxlength && 'tooltips.maxlength-is-over' | translate)
 )}}</div>
 <div class="textarea-container" [formGroup]="form" [ngClass]="{'input-container--long': isLong}">
     <textarea class="textarea-field" [id]="name" [formControlName]="name" [ngClass]="{'textarea-field--error': form.controls[name].invalid && form.controls[name].touched}"></textarea>

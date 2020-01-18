@@ -3,28 +3,28 @@
     <div class="add-course-content" *ngIf="!this.loaderService.showLoader">
         <form [formGroup]="form" (submit)="onSubmit()">
             <div class="form-section">
-                <label for="name">Title</label>
+                <label for="name">{{"add-form.title" | translate}}</label>
                 <app-form-input [form]="form" [name]="'name'"></app-form-input>
             </div>
             <div class="form-section">
-                <label for="description">Description</label>
+                <label for="description">{{"add-form.description" | translate}}</label>
                 <app-form-textarea [form]="form" [name]="'description'"></app-form-textarea>
             </div>
             <div class="form-section form-section--short">
-                <label for="date">Date</label>
+                <label for="date">{{"add-form.date" | translate}}</label>
                 <app-date-form-input [formControl]="form.controls.date"></app-date-form-input>
             </div>
             <div class="form-section form-section--short">
-                <label for="length">Duration</label>
+                <label for="length">{{"add-form.duration" | translate}}</label>
                 <app-duration-form-input [formControl]="form.controls.length"></app-duration-form-input>
             </div>
             <div class="form-section form-section--short">
-                <label for="authors">Authors</label>
+                <label for="authors">{{"add-form.authors" | translate}}</label>
                 <app-authors-form-input [formControl]="form.controls.authors"></app-authors-form-input>
             </div>
             <div class="button-block">
-                <app-button type="submit" [disabled]="form.status === 'INVALID'" [title]="'Save'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
-                <app-button (onclick)="onCancel()" [title]="'Cancel'" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+                <app-button type="submit" [disabled]="form.status === 'INVALID'" [title]="'buttons.save' | translate" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
+                <app-button (onclick)="onCancel()" [title]="'buttons.cancel' | translate" [size]="'MEDIUM'" [color]="'BLUE'"></app-button>
             </div>
         </form>
     </div>

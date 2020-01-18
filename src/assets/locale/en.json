@@ -1,0 +1,36 @@
+{
+    "main.title": "Video courses",
+    "main.log-in": "User login",
+    "main.log-off": "Log off",
+    "main.language": "Language",
+
+    "footer.all-rights": "All rights reserved",
+
+    "placeholders.courses-search": "Text to search",
+    "placeholders.authors-search": "Start to type here",
+
+    "buttons.add": "+ Add course",
+    "buttons.edit": "Edit",
+    "buttons.delete": "Delete",
+    "buttons.save": "Save",
+    "buttons.cancel": "Cancel",
+
+    "add-form.title": "Title",
+    "add-form.description": "Description",
+    "add-form.date": "Date",
+    "add-form.duration": "Duration",
+    "add-form.authors": "Authors",
+
+    "tooltips.no-authors": "No autrors selected",
+    "tooltips.empty-field": "Field is empty",
+    "tooltips.wrong-date": "Date is wrong",
+    "tooltips.wrong-duration": "Duration is wrong",
+    "tooltips.maxlength-is-over": "Maximum number of characters exceeded",
+
+    "auth.login": "Login",
+    "auth.password": "Password",
+    "auth.sign-in": "Sign in",
+
+    "languages.ru": "Russian",
+    "languages.en": "English"
+}

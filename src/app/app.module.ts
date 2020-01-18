@@ -3,9 +3,11 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
@@ -41,6 +43,11 @@ import {DurationFormInputComponent} from './duration-form-input/duration-form-in
 import {AuthorsFormInputComponent} from './authors-form-input/authors-form-input.component';
 import {FilterAuthorsPipe} from './filter-authors.pipe';
 import {LengthValidator} from './length-validator';
+import {SelectComponent} from './select/select.component';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+    return new TranslateHttpLoader(http, './assets/locale/', '.json');
+}
 
 const appRoutes: Routes = [
     {
@@ -115,7 +122,8 @@ const appRoutes: Routes = [
         DurationFormInputComponent,
         AuthorsFormInputComponent,
         FilterAuthorsPipe,
-        LengthValidator
+        LengthValidator,
+        SelectComponent
     ],
     imports: [
         FormsModule,
@@ -136,7 +144,16 @@ const appRoutes: Routes = [
         }),
         StoreDevtoolsModule.instrument({
             maxAge: 5
-        })
+        }),
+        // TranslateModule.forRoot()
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            useDefaultLang: true
+        }),
     ],
     providers: [
         CoursesService,

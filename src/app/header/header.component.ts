@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from '../auth.service';
@@ -17,6 +17,8 @@ import {AppState} from '../interfaces/store';
 export class HeaderComponent implements OnInit {
 
     name$: Observable<UserName>;
+    @Input() languages = [];
+    @Output() public changeLocale: EventEmitter<void> = new EventEmitter();
 
     constructor(
         private authService: AuthService,
@@ -37,6 +39,10 @@ export class HeaderComponent implements OnInit {
     logOff() {
         this.authService.logOut();
         this.router.navigate(['/auth']);
+    }
+
+    changeLanguage(value) {
+        this.changeLocale.emit(value);
     }
 
 }

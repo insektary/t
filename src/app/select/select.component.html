@@ -1,0 +1,3 @@
+<select (change)="onChange($event)" >
+    <option *ngFor="let item of languages" [value]="item.id" [ngValue]="item">{{item.title | translate}}</option>
+</select>

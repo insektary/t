@@ -1,0 +1,36 @@
+{
+    "main.title": "Видеокурсы",
+    "main.log-in": "Войти",
+    "main.log-off": "Выход",
+    "main.language": "Язык",
+
+    "footer.all-rights": "Все права защищены",
+
+    "placeholders.courses-search": "Введите для поиска",
+    "placeholders.authors-search": "Начните печатать",
+
+    "buttons.add": "+ Добавить курс",
+    "buttons.edit": "Редактировать",
+    "buttons.delete": "Удалить",
+    "buttons.save": "Сохранить",
+    "buttons.cancel": "Отменить",
+
+    "add-form.title": "Название",
+    "add-form.description": "Описание",
+    "add-form.date": "Дата",
+    "add-form.duration": "Продолжительность",
+    "add-form.authors": "Авторы",
+
+    "tooltips.no-authors": "Не выбрано ни одного автора",
+    "tooltips.empty-field": "Поле не заполнено",
+    "tooltips.wrong-date": "Неверно введена дата",
+    "tooltips.wrong-duration": "Неверно введена продолжительность",
+    "tooltips.maxlength-is-over": "Первышено максимальное количество символов",
+
+    "auth.login": "Имя пользователя",
+    "auth.password": "Пароль",
+    "auth.sign-in": "Войти",
+
+    "languages.ru": "Русский",
+    "languages.en": "Английский"
+}

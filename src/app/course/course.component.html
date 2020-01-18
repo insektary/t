@@ -3,7 +3,7 @@
     <div class="course-duration">&#9716; {{item.length | durationFormatter}} &#128197; {{item.date | date}}</div>
     <div class="course-description">{{item.description}}</div>
     <div class="course-buttons">
-        <app-button (onclick)="handleEdit()"  [title]="'Edit'" [size]="'SMALL'" [color]="'BLUE'"></app-button>
-        <app-button (onclick)="handleDelete()" [title]="'Delete'" [size]="'SMALL'" [color]="'BLUE'"></app-button>
+        <app-button (onclick)="handleEdit()"  [title]="'buttons.edit' | translate" [size]="'SMALL'" [color]="'BLUE'"></app-button>
+        <app-button (onclick)="handleDelete()" [title]="'buttons.delete' | translate" [size]="'SMALL'" [color]="'BLUE'"></app-button>
     </div>
 </div>

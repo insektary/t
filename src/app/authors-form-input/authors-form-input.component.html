@@ -2,7 +2,7 @@
     class="input-error-label"
     [ngClass]="{'input-error-label--hidden': !(formControl.errors && formControl.touched)}"
 >{{formControl.errors && (
-    (formControl.errors.isEmpty && 'Не выбрано ни одного автора')
+    (formControl.errors.isEmpty && 'tooltips.no-authors' | translate)
 )}}</div>
 <div class="input-container" [ngClass]="{'input-container--error': formControl.invalid && formControl.touched}">
     <div class="author-item" *ngFor="let item of value">
@@ -12,6 +12,6 @@
     <div class="author-item__open" (click)="openList()">+</div>
 </div>
 <div class="authors-list" *ngIf="listIsOpened">
-    <input [(ngModel)]="foundedValue" class="authors-list--input" placeholder="Начните печатать здесь..." />
+    <input [(ngModel)]="foundedValue" class="authors-list--input" [placeholder]="'placeholders.authors-search' | translate" />
     <div *ngFor="let item of authors$ | async | filterAuthors:(foundedValue)" [id]="item.id" (click)="addAuthor($event)">{{item.name}} {{item.lastName}}</div>
 </div>

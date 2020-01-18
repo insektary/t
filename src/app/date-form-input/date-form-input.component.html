@@ -2,8 +2,8 @@
     class="input-error-label"
     [ngClass]="{'input-error-label--hidden': !(formControl.errors && formControl.touched)}"
 >{{formControl.errors && (
-    (formControl.errors.required && 'Поле не заполнено') ||
-    (formControl.errors.invalidPattern && 'Неверно введена дата')
+    (formControl.errors.required && 'tooltips.empty-field' | translate) ||
+    (formControl.errors.invalidPattern && 'tooltips.wrong-date' | translate)
 )}}</div>
 <div class="input-container" [ngClass]="{'input-container--error': formControl.invalid && formControl.touched}">
     <input

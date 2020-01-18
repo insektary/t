@@ -1,17 +1,21 @@
 <div class="header-container">
     <div class="header-content">
         <div class="logo">
-            <span class="logo-title">VIDEO COURSE</span>
+            <span class="logo-title">{{"main.title" | translate}}</span>
+        </div>
+        <div class="header-content--language">
+            <span>{{'main.language' | translate}}</span>
+            <app-select (onchange)="changeLanguage($event)" [languages]="languages"></app-select>
         </div>
         <div class="header-content--name">
             <span>{{(name$ | async)?.first}}</span>
             <span>{{(name$ |async)?.last}}</span>
         </div>
         <div class="button-container">
-            <button (click)="logIn()" class="button header-content__button button--small">User login</button>
+            <button (click)="logIn()" class="button header-content__button button--small">{{"main.log-in" | translate}}</button>
         </div>
         <div class="button-container">
-            <button (click)="logOff()" class="button header-content__button button--small">Log off</button>
+            <button (click)="logOff()" class="button header-content__button button--small">{{"main.log-off" | translate}}</button>
         </div>
     </div>
 </div>
