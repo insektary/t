@@ -70,7 +70,10 @@ export class AddCourseComponent implements OnInit {
                 [
                     Validators.required,
                     ({value}: {value: string}) => {
-                        if (moment(value).isValid()) {
+                        const date = moment(value);
+                        const years = Number(date.format('YYYY'));
+
+                        if (moment(date).isValid() && !isNaN(years) && years < 9999) {
                             return null;
                         }
 
